@@ -14,6 +14,9 @@
 {
     self = [super initWithFrame:frame];
     if (self) {
+        // So that we can recognize gestures
+        self.userInteractionEnabled = YES;
+        
         previousPinchScale = 0;
         [self initPinchGesture];
 
@@ -30,8 +33,11 @@
                                                  initWithTarget: self action: @selector(handlePinch:)
                                                  ];
     
+    //pinchRecognizer.delegate = self;
+    
     [self handlePinch: pinchRecognizer];
     [self addGestureRecognizer: pinchRecognizer];
+    
 }
 
 - (void)handlePinch:(UIPinchGestureRecognizer *)recognizer{
