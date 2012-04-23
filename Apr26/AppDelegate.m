@@ -2,11 +2,12 @@
 //  AppDelegate.m
 //  Apr26
 //
-//  Created by Jesseka Emerick on 4/22/12.
+//  Created by Georges Labreche on 4/22/12.
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
 #import "AppDelegate.h"
+#import "MainViewController.h"
 
 @implementation AppDelegate
 
@@ -14,9 +15,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    CGRect mainScreenFrame = [[UIScreen mainScreen]bounds];
+                    
+    self.window = [[UIWindow alloc] initWithFrame:mainScreenFrame];
     // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
+    
+    MainViewController *mainViewController = [[MainViewController alloc]init];
+
+    self.window.rootViewController = mainViewController;
+       
     [self.window makeKeyAndVisible];
     return YES;
 }

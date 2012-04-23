@@ -13,6 +13,10 @@
 		1CFED7FA1544C07B00DB3701 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1CFED7F81544C07B00DB3701 /* InfoPlist.strings */; };
 		1CFED7FC1544C07B00DB3701 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFED7FB1544C07B00DB3701 /* main.m */; };
 		1CFED8001544C07B00DB3701 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFED7FF1544C07B00DB3701 /* AppDelegate.m */; };
+		1CFED8081544C30F00DB3701 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFED8071544C30F00DB3701 /* MainViewController.m */; };
+		1CFED80E1544C76C00DB3701 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFED80D1544C76C00DB3701 /* MainView.m */; };
+		1CFED8171544CA8D00DB3701 /* HeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFED8161544CA8D00DB3701 /* HeadView.m */; };
+		1CFED8191544CE5B00DB3701 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 1CFED8181544CE5B00DB3701 /* images */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -26,6 +30,13 @@
 		1CFED7FD1544C07B00DB3701 /* Apr26-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Apr26-Prefix.pch"; sourceTree = "<group>"; };
 		1CFED7FE1544C07B00DB3701 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1CFED7FF1544C07B00DB3701 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		1CFED8061544C30F00DB3701 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
+		1CFED8071544C30F00DB3701 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
+		1CFED80C1544C76C00DB3701 /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainView.h; sourceTree = "<group>"; };
+		1CFED80D1544C76C00DB3701 /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
+		1CFED8151544CA8D00DB3701 /* HeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadView.h; sourceTree = "<group>"; };
+		1CFED8161544CA8D00DB3701 /* HeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadView.m; sourceTree = "<group>"; };
+		1CFED8181544CE5B00DB3701 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,6 +86,12 @@
 				1CFED7FE1544C07B00DB3701 /* AppDelegate.h */,
 				1CFED7FF1544C07B00DB3701 /* AppDelegate.m */,
 				1CFED7F61544C07B00DB3701 /* Supporting Files */,
+				1CFED8061544C30F00DB3701 /* MainViewController.h */,
+				1CFED8071544C30F00DB3701 /* MainViewController.m */,
+				1CFED80C1544C76C00DB3701 /* MainView.h */,
+				1CFED80D1544C76C00DB3701 /* MainView.m */,
+				1CFED8151544CA8D00DB3701 /* HeadView.h */,
+				1CFED8161544CA8D00DB3701 /* HeadView.m */,
 			);
 			path = Apr26;
 			sourceTree = "<group>";
@@ -82,6 +99,7 @@
 		1CFED7F61544C07B00DB3701 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1CFED8181544CE5B00DB3701 /* images */,
 				1CFED7F71544C07B00DB3701 /* Apr26-Info.plist */,
 				1CFED7F81544C07B00DB3701 /* InfoPlist.strings */,
 				1CFED7FB1544C07B00DB3701 /* main.m */,
@@ -141,6 +159,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1CFED7FA1544C07B00DB3701 /* InfoPlist.strings in Resources */,
+				1CFED8191544CE5B00DB3701 /* images in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,6 +172,9 @@
 			files = (
 				1CFED7FC1544C07B00DB3701 /* main.m in Sources */,
 				1CFED8001544C07B00DB3701 /* AppDelegate.m in Sources */,
+				1CFED8081544C30F00DB3701 /* MainViewController.m in Sources */,
+				1CFED80E1544C76C00DB3701 /* MainView.m in Sources */,
+				1CFED8171544CA8D00DB3701 /* HeadView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

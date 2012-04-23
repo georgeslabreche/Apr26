@@ -1,5 +1,5 @@
 //
-//  AppDelegate.h
+//  HeadView.h
 //  Apr26
 //
 //  Created by Georges Labreche on 4/22/12.
@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
-
-@property (strong, nonatomic) UIWindow *window;
-
+@interface HeadView : UIImageView{
+     CGFloat previousPinchScale;
+	
+    
+}
+- (void)handlePinch:(UIPinchGestureRecognizer *)recognizer;
 @end
