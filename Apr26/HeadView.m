@@ -13,7 +13,7 @@
 
 // Init with the image of a head
 - (id)initWithImage:(UIImage *)image{
-    
+ 
     CGRect headViewFrame = CGRectMake(0, 0, image.size.width, image.size.height);
     self = [super initWithFrame:headViewFrame];
     

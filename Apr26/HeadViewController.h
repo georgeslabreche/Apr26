@@ -8,11 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "HeadView.h"
+#import "HeadSoundPlayer.h"
 
 @interface HeadViewController : UIViewController{
     UIDevice *device;
     HeadView *headView;
     CGFloat previousPinchScale;
+    
+    HeadSoundPlayer *headSoundPlayer;
 }
 
 @end

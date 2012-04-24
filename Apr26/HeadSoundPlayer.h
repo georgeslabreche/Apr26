@@ -7,7 +7,23 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <AVFoundation/AVAudioPlayer.h>
 
-@interface HeadSoundPlayer : NSObject
+@interface HeadSoundPlayer : NSObject{
+    AVAudioPlayer *moveAudioPlayer;
+    AVAudioPlayer *spinAudioPlayer;
+    AVAudioPlayer *shrinkAudioPlayer;
+    AVAudioPlayer *expandAudioPlayer;
+    AVAudioPlayer *rotateAudioPlayer;
+    
+    NSArray *audioPlayerArray;
+    
+}
+
+-(void) playSpinSound;
+-(void) playMoveSound;
+-(void) playShrinkSound;
+-(void) playExpandSound;
+-(void) playRotateSound;
 
 @end

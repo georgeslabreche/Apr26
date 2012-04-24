@@ -25,6 +25,8 @@
         
         // init the main view.
         [self initMainView];
+        
+        headSoundPlayer = [[HeadSoundPlayer alloc]init];
     }
     return self;
 }
@@ -67,6 +69,8 @@
     NSSet *allTouches = [event allTouches];
     
 	if (allTouches.count >= 1) {
+        
+        [headSoundPlayer playMoveSound];
         
         // Animation. Not the diraction of the animation is the same as the duration of the audio
         [UIView animateWithDuration: 1.0 

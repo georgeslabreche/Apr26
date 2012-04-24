@@ -28,8 +28,12 @@
         // Init Pinch gesture
         [self initPinchGesture];
         
+        [self initRotationGesture];
+        
         // Init device rotation notification
         [self initDeviceRotationHandler];
+        
+        headSoundPlayer = [[HeadSoundPlayer alloc]init];
         
     }
     return self;
@@ -55,6 +59,39 @@
      [device beginGeneratingDeviceOrientationNotifications];
 }
 
+// init rotation gesture handler
+- (void) initRotationGesture{
+    NSLog(@"Initialise rotation gesture handler...");
+    
+    // Register rotation gesture recognizer
+    UIRotationGestureRecognizer *rotationRecognizer = [[UIRotationGestureRecognizer alloc]
+                                                       initWithTarget:self action:@selector(handleRotation:)
+                                                       ];
+    [self handleRotation: rotationRecognizer];
+    [headView addGestureRecognizer:rotationRecognizer];
+}
+
+// Handle rotation
+- (void) handleRotation:(UIRotationGestureRecognizer *)recognizer{
+    NSLog(@"Handle rotation");
+    
+    [headSoundPlayer playSpinSound];
+    
+    CGAffineTransform scaleTransform = CGAffineTransformMakeScale(previousPinchScale, previousPinchScale);
+    CGAffineTransform rotationTransform = CGAffineTransformMakeRotation(M_PI * recognizer.rotation);
+    
+    // Animation
+    [UIView animateWithDuration: 0.0 
+                          delay: 0.0 
+                        options: UIViewAnimationOptionCurveEaseInOut
+                     animations: ^{
+                         // define animation
+                         headView.transform = CGAffineTransformConcat(rotationTransform, scaleTransform);
+                     }
+                     completion: NULL
+     ];
+}
+
 
 // init pinch gesture handler
 - (void) initPinchGesture{
@@ -66,9 +103,7 @@
     UIPinchGestureRecognizer *pinchRecognizer = [[UIPinchGestureRecognizer alloc]
                                                  initWithTarget: self action: @selector(handlePinch:)
                                                  ];
-    
-    //pinchRecognizer.delegate = self;
-    
+
     [self handlePinch: pinchRecognizer];
     [headView addGestureRecognizer: pinchRecognizer];
     
@@ -83,10 +118,12 @@
         // Expand
         // Play expand sound
         NSLog(@"Head expand.");
+        [headSoundPlayer playExpandSound];
     } else if (recognizer.scale < previousPinchScale) {
         // Shrink
         // Play shrink sound
         NSLog(@"Head shrink.");
+        [headSoundPlayer playShrinkSound];
     }
     
     // Animation
@@ -123,6 +160,8 @@
     
     CGAffineTransform scaleTransform = CGAffineTransformMakeScale(previousPinchScale, previousPinchScale);
     CGAffineTransform rotationTransform = CGAffineTransformMakeRotation(rotationAngle * M_PI / 180);
+    
+    [headSoundPlayer playRotateSound];
     
     // Animation
     [UIView animateWithDuration: 1.0

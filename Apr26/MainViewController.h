@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "HeadViewController.h"
+#import "HeadSoundPlayer.h"
 
 @interface MainViewController : UIViewController{
     HeadViewController *headViewController;
+    HeadSoundPlayer *headSoundPlayer;
 }
 @end

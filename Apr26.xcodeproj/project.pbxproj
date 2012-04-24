@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		1C7A0DF115462BE5000B98D2 /* HeadSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A0DF015462BE5000B98D2 /* HeadSoundPlayer.m */; };
 		1C7A0DF415462F0F000B98D2 /* HeadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A0DF315462F0F000B98D2 /* HeadViewController.m */; };
+		1C86694B15464E3B0081B3FF /* sounds in Resources */ = {isa = PBXBuildFile; fileRef = 1C86694A15464E3B0081B3FF /* sounds */; };
+		1C86694D154651790081B3FF /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1C86694C154651790081B3FF /* AVFoundation.framework */; };
 		1CFED7F01544C07B00DB3701 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CFED7EF1544C07B00DB3701 /* UIKit.framework */; };
 		1CFED7F21544C07B00DB3701 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CFED7F11544C07B00DB3701 /* Foundation.framework */; };
 		1CFED7F41544C07B00DB3701 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CFED7F31544C07B00DB3701 /* CoreGraphics.framework */; };
@@ -26,6 +28,8 @@
 		1C7A0DF015462BE5000B98D2 /* HeadSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadSoundPlayer.m; sourceTree = "<group>"; };
 		1C7A0DF215462F0F000B98D2 /* HeadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadViewController.h; sourceTree = "<group>"; };
 		1C7A0DF315462F0F000B98D2 /* HeadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadViewController.m; sourceTree = "<group>"; };
+		1C86694A15464E3B0081B3FF /* sounds */ = {isa = PBXFileReference; lastKnownFileType = folder; path = sounds; sourceTree = SOURCE_ROOT; };
+		1C86694C154651790081B3FF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		1CFED7EB1544C07B00DB3701 /* Apr26.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Apr26.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CFED7EF1544C07B00DB3701 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1CFED7F11544C07B00DB3701 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -50,6 +54,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1C86694D154651790081B3FF /* AVFoundation.framework in Frameworks */,
 				1CFED7F01544C07B00DB3701 /* UIKit.framework in Frameworks */,
 				1CFED7F21544C07B00DB3701 /* Foundation.framework in Frameworks */,
 				1CFED7F41544C07B00DB3701 /* CoreGraphics.framework in Frameworks */,
@@ -62,6 +67,7 @@
 		1CFED7E01544C07B00DB3701 = {
 			isa = PBXGroup;
 			children = (
+				1C86694C154651790081B3FF /* AVFoundation.framework */,
 				1CFED7F51544C07B00DB3701 /* Apr26 */,
 				1CFED7EE1544C07B00DB3701 /* Frameworks */,
 				1CFED7EC1544C07B00DB3701 /* Products */,
@@ -109,6 +115,7 @@
 		1CFED7F61544C07B00DB3701 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				1C86694A15464E3B0081B3FF /* sounds */,
 				1CFED8181544CE5B00DB3701 /* images */,
 				1CFED7F71544C07B00DB3701 /* Apr26-Info.plist */,
 				1CFED7F81544C07B00DB3701 /* InfoPlist.strings */,
@@ -170,6 +177,7 @@
 			files = (
 				1CFED7FA1544C07B00DB3701 /* InfoPlist.strings in Resources */,
 				1CFED8191544CE5B00DB3701 /* images in Resources */,
+				1C86694B15464E3B0081B3FF /* sounds in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
