@@ -11,16 +11,17 @@
 
 @implementation HeadSoundPlayer
 
+@synthesize moveAudioPlayer;
 
 - (id) init{
     self = [super init];
     
     if(self){
-        moveAudioPlayer = [self buildPlayerWithMp3Resource:@"move" inDirectory: @"sounds"];
-        spinAudioPlayer = [self buildPlayerWithMp3Resource:@"spin" inDirectory: @"sounds"];
-        shrinkAudioPlayer = [self buildPlayerWithMp3Resource:@"shrink" inDirectory: @"sounds"];
-        expandAudioPlayer = [self buildPlayerWithMp3Resource:@"expand" inDirectory: @"sounds"];
-        rotateAudioPlayer = [self buildPlayerWithMp3Resource:@"rotate" inDirectory: @"sounds"];
+        moveAudioPlayer = [self buildPlayerWithResource:@"move" inDirectory: @"sounds"];
+        spinAudioPlayer = [self buildPlayerWithResource:@"spin" inDirectory: @"sounds"];
+        shrinkAudioPlayer = [self buildPlayerWithResource:@"shrink" inDirectory: @"sounds"];
+        expandAudioPlayer = [self buildPlayerWithResource:@"expand" inDirectory: @"sounds"];
+        rotateAudioPlayer = [self buildPlayerWithResource:@"rotate" inDirectory: @"sounds"];
         
         audioPlayerArray = [NSArray arrayWithObjects:
                             moveAudioPlayer,
@@ -40,12 +41,9 @@
     if([spinAudioPlayer isPlaying] == false){
     
         // Stop any other sound
-        NSEnumerator *e = [audioPlayerArray objectEnumerator];
-        AVAudioPlayer *audioPlayer;
-        while (audioPlayer = [e nextObject]) {
-            [audioPlayer stop];
-        }
+        [self stopAllPlayers];
         
+        // Play sound
         [spinAudioPlayer play];
     }
     
@@ -56,13 +54,10 @@
     NSLog(@"Play move sound");
     if([moveAudioPlayer isPlaying] == false){
         
-         // Stop any other sound
-        NSEnumerator *e = [audioPlayerArray objectEnumerator];
-        AVAudioPlayer *audioPlayer;
-        while (audioPlayer = [e nextObject]) {
-            [audioPlayer stop];
-        }
+        // Stop any other sound
+        [self stopAllPlayers];
         
+        // Play sound
         [moveAudioPlayer play];
     }
 }
@@ -71,13 +66,10 @@
     NSLog(@"Play shrink sound");
     if([shrinkAudioPlayer isPlaying] == false){
         
-         // Stop any other sound
-        NSEnumerator *e = [audioPlayerArray objectEnumerator];
-        AVAudioPlayer *audioPlayer;
-        while (audioPlayer = [e nextObject]) {
-            [audioPlayer stop];
-        }
+        // Stop any other sound
+        [self stopAllPlayers];
         
+        // Play sound
         [shrinkAudioPlayer play];
     }
 }
@@ -86,13 +78,10 @@
     NSLog(@"Play expand sound");
     if([expandAudioPlayer isPlaying] == false){
         
-         // Stop any other sound
-        NSEnumerator *e = [audioPlayerArray objectEnumerator];
-        AVAudioPlayer *audioPlayer;
-        while (audioPlayer = [e nextObject]) {
-            [audioPlayer stop];
-        }
+        // Stop any other sound
+        [self stopAllPlayers];
         
+        // Play sound
         [expandAudioPlayer play];
     }
 }
@@ -102,18 +91,28 @@
     if([rotateAudioPlayer isPlaying] == false){
         
         // Stop any other sound
-        NSEnumerator *e = [audioPlayerArray objectEnumerator];
-        AVAudioPlayer *audioPlayer;
-        while (audioPlayer = [e nextObject]) {
-            [audioPlayer stop];
-        }
+        [self stopAllPlayers];
         
+        // Play sound
         [rotateAudioPlayer play];
     }
 }
 
+-(void) stopAllPlayers{
+    
+    // Stop any other sound
+    NSEnumerator *e = [audioPlayerArray objectEnumerator];
+    AVAudioPlayer *audioPlayer;
+    while (audioPlayer = [e nextObject]) {
+        
+        if([audioPlayer isPlaying]){
+            [audioPlayer stop];
+        }
+    }
+    
+}
 
-- (AVAudioPlayer *) buildPlayerWithMp3Resource:(NSString*)soundFilename inDirectory:(NSString*) directoryName{
+- (AVAudioPlayer *) buildPlayerWithResource:(NSString*)soundFilename inDirectory:(NSString*) directoryName{
     
     AVAudioPlayer *player;
     

@@ -20,6 +20,8 @@
     
 }
 
+@property AVAudioPlayer* moveAudioPlayer;
+
 -(void) playSpinSound;
 -(void) playMoveSound;
 -(void) playShrinkSound;

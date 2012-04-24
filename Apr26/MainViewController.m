@@ -63,7 +63,7 @@
 }
 
 // touch detection to tell the head where to go.
-- (void) touchesBegan: (NSSet *) touches withEvent: (UIEvent *) event {
+- (void) touchesEnded: (NSSet *) touches withEvent: (UIEvent *) event {
     
     // Using [event allTouches] because for some reason touches.count isn't behaving as expected.
     NSSet *allTouches = [event allTouches];
@@ -73,7 +73,7 @@
         [headSoundPlayer playMoveSound];
         
         // Animation. Not the diraction of the animation is the same as the duration of the audio
-        [UIView animateWithDuration: 1.0 
+        [UIView animateWithDuration: [headSoundPlayer moveAudioPlayer].duration
                               delay: 0.0 
                             options: UIViewAnimationOptionCurveEaseOut
                          animations: ^{
