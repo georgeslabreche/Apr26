@@ -85,18 +85,22 @@
         rotationAngle = 90;
     }
     
+    CGAffineTransform scaleTransform = CGAffineTransformMakeScale(previousPinchScale, previousPinchScale);
+    CGAffineTransform rotationTransform = CGAffineTransformMakeRotation(rotationAngle * M_PI / 180);
+    
     // Animation
     [UIView animateWithDuration: 1.0
                           delay: 0.0 
                         options: UIViewAnimationOptionCurveEaseInOut
                      animations: ^{
                          // define animation
-                         self.transform = CGAffineTransformMakeRotation(rotationAngle * M_PI / 180);
+                         self.transform = CGAffineTransformConcat(rotationTransform, scaleTransform);
                      }
                      completion: NULL
      ];
     
 }
+
 
 /*
 // Only override drawRect: if you perform custom drawing.

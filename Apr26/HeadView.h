@@ -10,8 +10,5 @@
 
 @interface HeadView : UIImageView{
      CGFloat previousPinchScale;
-	
-    
 }
-- (void)handlePinch:(UIPinchGestureRecognizer *)recognizer;
 @end

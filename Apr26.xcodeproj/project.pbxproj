@@ -278,6 +278,7 @@
 				1CFED8051544C07B00DB3701 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
