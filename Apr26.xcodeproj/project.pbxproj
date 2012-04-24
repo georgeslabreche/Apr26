@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1C7A0DF115462BE5000B98D2 /* HeadSoundPlayer.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A0DF015462BE5000B98D2 /* HeadSoundPlayer.m */; };
+		1C7A0DF415462F0F000B98D2 /* HeadViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1C7A0DF315462F0F000B98D2 /* HeadViewController.m */; };
 		1CFED7F01544C07B00DB3701 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CFED7EF1544C07B00DB3701 /* UIKit.framework */; };
 		1CFED7F21544C07B00DB3701 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CFED7F11544C07B00DB3701 /* Foundation.framework */; };
 		1CFED7F41544C07B00DB3701 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1CFED7F31544C07B00DB3701 /* CoreGraphics.framework */; };
@@ -20,6 +22,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		1C7A0DEF15462BE5000B98D2 /* HeadSoundPlayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadSoundPlayer.h; sourceTree = "<group>"; };
+		1C7A0DF015462BE5000B98D2 /* HeadSoundPlayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadSoundPlayer.m; sourceTree = "<group>"; };
+		1C7A0DF215462F0F000B98D2 /* HeadViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadViewController.h; sourceTree = "<group>"; };
+		1C7A0DF315462F0F000B98D2 /* HeadViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadViewController.m; sourceTree = "<group>"; };
 		1CFED7EB1544C07B00DB3701 /* Apr26.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Apr26.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1CFED7EF1544C07B00DB3701 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		1CFED7F11544C07B00DB3701 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -92,6 +98,10 @@
 				1CFED80D1544C76C00DB3701 /* MainView.m */,
 				1CFED8151544CA8D00DB3701 /* HeadView.h */,
 				1CFED8161544CA8D00DB3701 /* HeadView.m */,
+				1C7A0DEF15462BE5000B98D2 /* HeadSoundPlayer.h */,
+				1C7A0DF015462BE5000B98D2 /* HeadSoundPlayer.m */,
+				1C7A0DF215462F0F000B98D2 /* HeadViewController.h */,
+				1C7A0DF315462F0F000B98D2 /* HeadViewController.m */,
 			);
 			path = Apr26;
 			sourceTree = "<group>";
@@ -175,6 +185,8 @@
 				1CFED8081544C30F00DB3701 /* MainViewController.m in Sources */,
 				1CFED80E1544C76C00DB3701 /* MainView.m in Sources */,
 				1CFED8171544CA8D00DB3701 /* HeadView.m in Sources */,
+				1C7A0DF115462BE5000B98D2 /* HeadSoundPlayer.m in Sources */,
+				1C7A0DF415462F0F000B98D2 /* HeadViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

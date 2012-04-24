@@ -7,11 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "HeadView.h"
+#import "HeadViewController.h"
 
 @interface MainViewController : UIViewController{
-    //device. for notification
-    UIDevice *device;
-    HeadView *headView;
+    HeadViewController *headViewController;
 }
 @end

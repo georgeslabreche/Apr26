@@ -8,7 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface HeadView : UIImageView{
-     CGFloat previousPinchScale;
-}
+@interface HeadView : UIView
+- (id)initWithImage:(UIImage *)image;
 @end

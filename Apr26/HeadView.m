@@ -10,96 +10,27 @@
 
 @implementation HeadView
 
-- (id)initWithFrame:(CGRect)frame
-{
-    self = [super initWithFrame:frame];
-    if (self) {
-        // So that we can recognize gestures
-        self.userInteractionEnabled = YES;
-        
-        previousPinchScale = 0;
-        [self initPinchGesture];
 
+// Init with the image of a head
+- (id)initWithImage:(UIImage *)image{
+    
+    CGRect headViewFrame = CGRectMake(0, 0, image.size.width, image.size.height);
+    self = [super initWithFrame:headViewFrame];
+    
+    if(self){
+        UIImageView *headImageView = [[UIImageView alloc]initWithFrame:headViewFrame];
+        // Enabled detection of gestures and touches.
+        headImageView.userInteractionEnabled = YES;
+        
+        // Set head image for the image view
+        headImageView.image = image;
+        
+        [self addSubview:headImageView];
     }
+    
     return self;
 }
 
-// init pinch gesture handler
-- (void) initPinchGesture{
-    NSLog(@"Initialise pinch gesture handler...");
-    
-    // Register pinch gesture recognizer
-    UIPinchGestureRecognizer *pinchRecognizer = [[UIPinchGestureRecognizer alloc]
-                                                 initWithTarget: self action: @selector(handlePinch:)
-                                                 ];
-    
-    //pinchRecognizer.delegate = self;
-    
-    [self handlePinch: pinchRecognizer];
-    [self addGestureRecognizer: pinchRecognizer];
-    
-}
-
-- (void)handlePinch:(UIPinchGestureRecognizer *)recognizer{
-    
-    NSLog(@"Handle pinch.");
-    
-    if (recognizer.scale > previousPinchScale) {
-        // Expand
-        // Play expand sound
-         NSLog(@"Head expand.");
-    } else if (recognizer.scale < previousPinchScale) {
-        // Shrink
-        // Play shrink sound
-        NSLog(@"Head shrink.");
-    }
-    
-    // Animation
-    [UIView animateWithDuration: 0.0 
-                          delay: 0.0 
-                        options: UIViewAnimationOptionCurveEaseInOut
-                     animations: ^{
-                         // define animation
-                         self.transform = CGAffineTransformMakeScale(recognizer.scale, recognizer.scale);
-                     }
-                     completion: NULL
-     ];
-    
-    previousPinchScale = recognizer.scale;
-}
-
-- (void)handleDeviceRotate{
-    
-    NSUInteger orientationId = [UIDevice currentDevice].orientation;
-    NSLog(@"Rotated device: %i", orientationId);
-    
-    NSInteger rotationAngle = 0;
-    
-    if (UIDeviceOrientationPortrait == orientationId){
-        rotationAngle = 0;
-    }else if (UIDeviceOrientationPortraitUpsideDown == orientationId){
-        rotationAngle = 180;
-    }else if (UIDeviceOrientationLandscapeRight == orientationId){
-        rotationAngle = -90;
-    }else if (UIDeviceOrientationLandscapeLeft == orientationId){
-        rotationAngle = 90;
-    }
-    
-    CGAffineTransform scaleTransform = CGAffineTransformMakeScale(previousPinchScale, previousPinchScale);
-    CGAffineTransform rotationTransform = CGAffineTransformMakeRotation(rotationAngle * M_PI / 180);
-    
-    // Animation
-    [UIView animateWithDuration: 1.0
-                          delay: 0.0 
-                        options: UIViewAnimationOptionCurveEaseInOut
-                     animations: ^{
-                         // define animation
-                         self.transform = CGAffineTransformConcat(rotationTransform, scaleTransform);
-                     }
-                     completion: NULL
-     ];
-    
-}
 
 
 /*

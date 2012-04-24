@@ -7,9 +7,9 @@
 //
 
 #import "MainViewController.h"
+#import "HeadViewController.h"
 
 #import "MainView.h"
-#import "HeadView.h"
 
 @interface MainViewController ()
 
@@ -23,65 +23,41 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
-        // Notification
-        device = [UIDevice currentDevice];
-        NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-        
-        // Create and set the main view
-        CGRect mainScreenBounds = [[UIScreen mainScreen]bounds];
-        MainView *mainView = [[MainView alloc]initWithFrame:mainScreenBounds];
-              
-        // Create the image view that will serve as a background.
-        // We use an image view because image views automatically scale the the background image.
-        UIImageView *backgroundImageView = [[UIImageView alloc]initWithFrame:mainView.frame];
-        // Enabled detection of gestures and touches.
-        backgroundImageView.userInteractionEnabled = YES;
-        // Get background image
-        UIImage *backgoundImage = [UIImage imageNamed:@"images/background.png"];
-        // Set background image for the image view
-        backgroundImageView.image = backgoundImage;
-        
-        
-        // Now, to that background image view, let's add the head view as a subview
-        NSBundle *bundle = [NSBundle mainBundle];
-        if (bundle == nil) {
-            NSLog(@"could not get the main bundle.");
-            
-        }else{
-            
-            UIImage *headImage = [UIImage imageNamed:@"images/head.png"];
-            
-            CGFloat headOriginX = (backgroundImageView.bounds.size.width / 2) - (headImage.size.width / 2);
-            CGFloat headOriginY = (backgroundImageView.bounds.size.height / 2) - (headImage.size.height / 2);
-            CGRect headImageFrame = CGRectMake(headOriginX, headOriginY, headImage.size.width, headImage.size.height);
-            
-            headView = [[HeadView alloc]initWithFrame:headImageFrame];
-            headView.image = headImage;
-            
-            // Make the head view a sub view of the background image view.
-            [backgroundImageView addSubview:headView];
-
-        }
-
-        
-        // Make the background image view a subview of the main view.
-        [mainView addSubview:backgroundImageView];
-        
-        // Set the main view to be the controller's view.
-        self.view = mainView;
-        
-        //Send the handleDeviceRotate message to the head view
-        //when we get a OrientationDidChange notification from the device.
-        [center addObserver: headView
-                   selector: @selector(handleDeviceRotate)
-                       name: UIDeviceOrientationDidChangeNotification
-                     object: device
-         ];
-        
-   
-        [device beginGeneratingDeviceOrientationNotifications];
+        // init the main view.
+        [self initMainView];
     }
     return self;
+}
+
+// Init the main view
+- (void) initMainView{
+    // Create and set the main view
+    CGRect mainScreenBounds = [[UIScreen mainScreen]bounds];
+    MainView *mainView = [[MainView alloc]initWithFrame:mainScreenBounds];
+    
+    // Create the image view that will serve as a background.
+    // We use an image view because image views automatically scale the the background image.
+    UIImageView *backgroundImageView = [[UIImageView alloc]initWithFrame:mainView.frame];
+    
+    // Enabled detection of gestures and touches.
+    backgroundImageView.userInteractionEnabled = YES;
+    
+    // Get background image
+    UIImage *backgoundImage = [UIImage imageNamed:@"images/background.png"];
+    
+    // Set background image for the background image view
+    backgroundImageView.image = backgoundImage;
+    
+    // Init the head view controller.
+    // Get the head view from that controller and make it a subview of the background image view
+    headViewController = [[HeadViewController alloc] init]; 
+    [backgroundImageView addSubview:headViewController.view];
+    
+    // Make the background image view a subview of the main view.
+    [mainView addSubview:backgroundImageView];
+    
+    // Set the main view to be the controller's view.
+    self.view = mainView;
 }
 
 // touch detection to tell the head where to go.
@@ -98,7 +74,7 @@
                             options: UIViewAnimationOptionCurveEaseOut
                          animations: ^{
                              // define animation 
-                             headView.center = [[touches anyObject] locationInView: self.view];
+                             headViewController.view.center = [[touches anyObject] locationInView: self.view];
                          }
                          completion: NULL
          ]; 
