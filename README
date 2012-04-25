@@ -1,3 +1,25 @@
 Thursday, April 19, 2012: up to Video in the in-class examples. I added crawl.html to the first UIWebView example. It looks good on the iPhone screen in landscape orientation. Select View Source in your browser to see how it works.
 
 Try everything and do all the exercises. Play with each other’s apps. Write and upload an app named Apr26 that does something interesting. For example, it could detect single or double taps, have lots of buttons, play audio and/or video, do something with the notification center, or explore the files and directories inside the iPhone or iPad.
+
+-= What This App Actually Does =-
+
+There is a head floating in space.
+Touch anywhere in space and the head will move there. The head will say something as it moves.
+Rotating the devide will rotate the head accordingly.
+You can expand or shrink the head by pinching on it.
+
+-= Concepts Explored =-
+
+	- Operating with UIViewController to implement UIView logic that does not pertain to view's display logic.
+	- Preserving previous transform on a View when applying a new one. Used CGAffineTransformConcat.
+	- Making UIImageView respond to events and gestures: imageView.userInteractionEnabled = YES;
+	- Use of device orientation constant variables like UIDeviceOrientationPortrait to interpret orientation id of device.
+
+-= Concepts To Explore =-
+
+	1) 	Collision detection between two UIImageView. 
+		"According to Apple, you CANNOT obtain current position properties during animation. Only before and after. The UIKit/CA animation methods are meant for simple "fire and forget" procedures. Therefore, to do this, you need to first animate the View yourself (e.g., with a Timer) and check its position manually to see if it collides."
+		Use CGRectInersectsRect. More details here: http://www.iphonedevsdk.com/forum/iphone-sdk-development/7483-detect-uiimageview-collision-one-animated-one-being-dragged.html
+
+	2)	Implement Singleton pattern.
