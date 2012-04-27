@@ -21,6 +21,8 @@
 		1CFED80E1544C76C00DB3701 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFED80D1544C76C00DB3701 /* MainView.m */; };
 		1CFED8171544CA8D00DB3701 /* HeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFED8161544CA8D00DB3701 /* HeadView.m */; };
 		1CFED8191544CE5B00DB3701 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 1CFED8181544CE5B00DB3701 /* images */; };
+		9511EB3C154A08ED0024CB84 /* AsteroidView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9511EB3B154A08ED0024CB84 /* AsteroidView.m */; };
+		9511EB40154A090A0024CB84 /* AsteroidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9511EB3F154A090A0024CB84 /* AsteroidViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +49,10 @@
 		1CFED8151544CA8D00DB3701 /* HeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadView.h; sourceTree = "<group>"; };
 		1CFED8161544CA8D00DB3701 /* HeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadView.m; sourceTree = "<group>"; };
 		1CFED8181544CE5B00DB3701 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = SOURCE_ROOT; };
+		9511EB3A154A08ED0024CB84 /* AsteroidView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsteroidView.h; sourceTree = "<group>"; };
+		9511EB3B154A08ED0024CB84 /* AsteroidView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsteroidView.m; sourceTree = "<group>"; };
+		9511EB3E154A090A0024CB84 /* AsteroidViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsteroidViewController.h; sourceTree = "<group>"; };
+		9511EB3F154A090A0024CB84 /* AsteroidViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsteroidViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +114,10 @@
 				1C7A0DF015462BE5000B98D2 /* HeadSoundPlayer.m */,
 				1C7A0DF215462F0F000B98D2 /* HeadViewController.h */,
 				1C7A0DF315462F0F000B98D2 /* HeadViewController.m */,
+				9511EB3A154A08ED0024CB84 /* AsteroidView.h */,
+				9511EB3B154A08ED0024CB84 /* AsteroidView.m */,
+				9511EB3E154A090A0024CB84 /* AsteroidViewController.h */,
+				9511EB3F154A090A0024CB84 /* AsteroidViewController.m */,
 			);
 			path = Apr26;
 			sourceTree = "<group>";
@@ -195,6 +205,8 @@
 				1CFED8171544CA8D00DB3701 /* HeadView.m in Sources */,
 				1C7A0DF115462BE5000B98D2 /* HeadSoundPlayer.m in Sources */,
 				1C7A0DF415462F0F000B98D2 /* HeadViewController.m in Sources */,
+				9511EB3C154A08ED0024CB84 /* AsteroidView.m in Sources */,
+				9511EB40154A090A0024CB84 /* AsteroidViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -263,6 +275,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Apr26/Apr26-Prefix.pch";
 				INFOPLIST_FILE = "Apr26/Apr26-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -274,6 +287,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Apr26/Apr26-Prefix.pch";
 				INFOPLIST_FILE = "Apr26/Apr26-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

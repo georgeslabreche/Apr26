@@ -55,6 +55,10 @@
     headViewController = [[HeadViewController alloc] init]; 
     [backgroundImageView addSubview:headViewController.view];
     
+    
+    asteroidViewController = [[AsteroidViewController alloc] init];
+    [backgroundImageView addSubview:asteroidViewController.view];
+    
     // Make the background image view a subview of the main view.
     [mainView addSubview:backgroundImageView];
     
