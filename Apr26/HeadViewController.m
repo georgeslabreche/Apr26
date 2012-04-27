@@ -19,21 +19,6 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-    
-        // Create head view and set it as the view of this controller.
-        UIImage *headImage = [UIImage imageNamed:@"images/head.png"];
-        headView = [[HeadView alloc] initWithImage:headImage];
-        self.view = headView;
-        
-        // Init Pinch gesture
-        [self initPinchGesture];
-        
-        [self initRotationGesture];
-        
-        // Init device rotation notification
-        [self initDeviceRotationHandler];
-        
-        headSoundPlayer = [[HeadSoundPlayer alloc]init];
         
     }
     return self;
@@ -180,7 +165,22 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+	
+    
+    // Create head view and set it as the view of this controller.
+    UIImage *headImage = [UIImage imageNamed:@"images/head.png"];
+    headView = [[HeadView alloc] initWithImage:headImage];
+    self.view = headView;
+    
+    // Init Pinch gesture
+    [self initPinchGesture];
+    
+    [self initRotationGesture];
+    
+    // Init device rotation notification
+    [self initDeviceRotationHandler];
+    
+    headSoundPlayer = [[HeadSoundPlayer alloc]init];
 }
 
 - (void)viewDidUnload

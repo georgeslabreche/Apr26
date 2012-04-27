@@ -23,10 +23,6 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         
-        // init the main view.
-        [self initMainView];
-        
-        headSoundPlayer = [[HeadSoundPlayer alloc]init];
     }
     return self;
 }
@@ -93,7 +89,11 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    // init the main view.
+    [self initMainView];
+    
+    headSoundPlayer = [[HeadSoundPlayer alloc]init];
 }
 
 - (void)viewDidUnload
