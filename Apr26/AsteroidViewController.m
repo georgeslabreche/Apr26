@@ -75,28 +75,28 @@
     CGFloat y1 = 0;
     
     if(asteroidOriginIndex == FromLeft){
-        NSLog(@"Asteroid coming from the left.");
+        //NSLog(@"Asteroid coming from the left.");
         x1 = 0 - asteroidSize.width / 2;
         y1 = getRandomFloat(asteroidSize.height, spaceViewSize.height - asteroidSize.height);
         
     }
     
     else if(asteroidOriginIndex == FromRight){
-        NSLog(@"Asteroid coming from the right.");
+        //NSLog(@"Asteroid coming from the right.");
         x1 = spaceViewSize.width + asteroidSize.width / 2;
         y1 = getRandomFloat(asteroidSize.height, spaceViewSize.height - asteroidSize.height);
         
     }
     
     else if(asteroidOriginIndex == FromAbove){
-        NSLog(@"Asteroid coming from above.");
+        //NSLog(@"Asteroid coming from above.");
         x1 = getRandomFloat(asteroidSize.width, spaceViewSize.width - asteroidSize.width);
         y1 = 0 - asteroidSize.height / 2;
         
     }
     
     else if(asteroidOriginIndex == FromBellow){
-        NSLog(@"Asteroid coming from bellow.");
+        //NSLog(@"Asteroid coming from bellow.");
         x1 = getRandomFloat(asteroidSize.width, spaceViewSize.width - asteroidSize.width);
         y1 = spaceViewSize.height + asteroidSize.height / 2;
     }
@@ -152,21 +152,21 @@
     //      [(0 - image.height / 2) ; (bounds.height + image.height / 2)]
 	//
     if(randomTrajectoryIndex == FromLeftToUpperRight){
-        NSLog(@"Asteroid Trajecory: Left -> Upper Right");
+        //NSLog(@"Asteroid Trajecory: Left -> Upper Right");
         
         x2 = getRandomFloat(spaceViewSize.width / 2, spaceViewSize.width);
         y2 = 0 - asteroidSize.height / 2;
     }
     
     else if(randomTrajectoryIndex == FromLeftToBottomRight){
-        NSLog(@"Asteroid Trajecory: Left -> Bottom Right");
+        //NSLog(@"Asteroid Trajecory: Left -> Bottom Right");
         
         x2 = getRandomFloat(spaceViewSize.width / 2, spaceViewSize.width);
         y2 = spaceViewSize.height + asteroidSize.height / 2;
     }
     
     else if(randomTrajectoryIndex == FromLeftToRight){
-        NSLog(@"Asteroid Trajecory: Left -> Right");
+        //NSLog(@"Asteroid Trajecory: Left -> Right");
         
         x2 = spaceViewSize.width + asteroidSize.width / 2;
         y2 = getRandomFloat(0 - asteroidSize.height / 2, spaceViewSize.height + asteroidSize.height / 2);
@@ -204,21 +204,21 @@
     //      [(0 - image.height / 2) ; (bounds.height + image.height / 2)]
     //
     else if(randomTrajectoryIndex == FromRightToUpperLeft){
-        NSLog(@"Asteroid Trajecory: Right -> Upper Left");
+        //NSLog(@"Asteroid Trajecory: Right -> Upper Left");
         
         x2 = getRandomFloat(0, spaceViewSize.width / 2);
         y2 = 0 - asteroidSize.height / 2;
     }
     
     else if(randomTrajectoryIndex == FromRightToBottomLeft){
-        NSLog(@"Asteroid Trajecory: Right -> Bellow Left");
+        //NSLog(@"Asteroid Trajecory: Right -> Bellow Left");
         
         x2 = getRandomFloat(0, spaceViewSize.width / 2);
         y2 = spaceViewSize.height + asteroidSize.height / 2;
     }
     
     else if(randomTrajectoryIndex == FromRightToLeft){
-        NSLog(@"Asteroid Trajecory: Right -> Left");
+        //NSLog(@"Asteroid Trajecory: Right -> Left");
         
         x2 = 0 - asteroidSize.width / 2;
         y2 = getRandomFloat(0 - asteroidSize.height / 2, spaceViewSize.height + asteroidSize.height / 2);
@@ -266,20 +266,20 @@
     //      [(0 - image.width / 2) ; (bounds.width + image.width / 2)]
     //
     else if(randomTrajectoryIndex == FromAboveToBellowLeft){
-        NSLog(@"Asteroid Trajecory: Above -> Bellow Left");
+        //NSLog(@"Asteroid Trajecory: Above -> Bellow Left");
         y2 = getRandomFloat(spaceViewSize.height / 2, spaceViewSize.height);
         x2 = 0 - asteroidSize.width / 2;
     }
     
     else if(randomTrajectoryIndex == FromAboveToBellowRight){
-        NSLog(@"Asteroid Trajecory: Above -> Bellow Right");
+        //NSLog(@"Asteroid Trajecory: Above -> Bellow Right");
         y2 = getRandomFloat(spaceViewSize.height / 2, spaceViewSize.height);
         x2 = spaceViewSize.width + asteroidSize.width / 2;
         
     }
     
     else if(randomTrajectoryIndex == FromAboveToBellow){
-        NSLog(@"Asteroid Trajecory: Above -> Bellow");
+        //NSLog(@"Asteroid Trajecory: Above -> Bellow");
         y2 = spaceViewSize.height + asteroidSize.height / 2;
         x2 = getRandomFloat(0 - asteroidSize.width / 2, spaceViewSize.width + asteroidSize.width / 2);    
     }
@@ -290,21 +290,21 @@
 	// We needn't detail this last case, the logic is predictable enough at this point.
     //
     else if(randomTrajectoryIndex == FromBellowToAboveLeft){
-        NSLog(@"Asteroid Trajecory: Bellow -> Above Left");
+        //NSLog(@"Asteroid Trajecory: Bellow -> Above Left");
         
         y2 = getRandomFloat(0, spaceViewSize.height / 2);
         x2 = 0 - asteroidSize.width / 2;
     }
     
     else if(randomTrajectoryIndex == FromBellowToAboveRight){
-        NSLog(@"Asteroid Trajecory: Bellow -> Above Right");
+        //NSLog(@"Asteroid Trajecory: Bellow -> Above Right");
         
         y2 = getRandomFloat(0, spaceViewSize.height / 2);
         x2 = spaceViewSize.width + asteroidSize.width / 2;
     }
     
     else if(randomTrajectoryIndex == FromBellowToAbove){
-        NSLog(@"Asteroid Trajecory: Bellow -> Above");
+        //NSLog(@"Asteroid Trajecory: Bellow -> Above");
         
         y2 = 0 - asteroidSize.height / 2;
         x2 = getRandomFloat(0 - asteroidSize.width / 2, spaceViewSize.width + asteroidSize.width / 2);
@@ -369,7 +369,7 @@
 - (void) initAsteroidAnimation
 {
     // When asteroid view is loaded, launch it!
-    NSLog(@"Launching Asteroid! (%f,%f) -> (%f,%f)", startPoint.x, startPoint.y, endPoint.x, endPoint.y);
+    //NSLog(@"Launching Asteroid! (%f,%f) -> (%f,%f)", startPoint.x, startPoint.y, endPoint.x, endPoint.y);
     
     rotationAngle = getRandomFloat(0.1, 3.0);
     
@@ -446,7 +446,7 @@
         (!incrementY && (startPoint.y <= endPoint.y))
        ){
         
-        NSLog(@"Asteroid animation complete. Reinitialise and relaunch asteroid.");
+        //NSLog(@"Asteroid animation complete. Reinitialise and relaunch asteroid.");
         
         [self initAsteroidTrajection];
         [self initAsteroidAnimation];

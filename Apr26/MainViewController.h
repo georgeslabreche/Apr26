@@ -13,5 +13,9 @@
 @interface MainViewController : UIViewController{
     HeadViewController *headViewController;
     HeadSoundPlayer *headSoundPlayer;
+    
+    // Keep track of the asteroid views we've created
+    // so that we may check if any of them have collided with our head view.
+    NSMutableArray *asteroidViews;
 }
 @end

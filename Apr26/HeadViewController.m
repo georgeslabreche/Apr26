@@ -34,8 +34,6 @@
     return self;
 }
 
-
-
 // init device rotation handler
 - (void) initDeviceRotationHandler{
     NSLog(@"Initialise device rotation handler");
@@ -172,6 +170,7 @@
 }
 
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -194,6 +193,7 @@
     [self initDeviceRotationHandler];
     
     headSoundPlayer = [[HeadSoundPlayer alloc]init];
+    
 }
 
 - (void)viewDidUnload

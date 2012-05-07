@@ -29,6 +29,10 @@
 
 // Init the main view
 - (void) initMainView{
+    
+    // Init our asteroid views array
+    asteroidViews = [[NSMutableArray alloc] init];
+    
     // Create and set the main view
     CGRect mainScreenBounds = [[UIScreen mainScreen]bounds];
     MainView *mainView = [[MainView alloc]initWithFrame:mainScreenBounds];
@@ -46,17 +50,12 @@
     // Set background image for the background image view
     backgroundImageView.image = backgoundImage;
     
-    // Init the head view controller.
-    // Get the head view from that controller and make it a subview of the background image view
-    headViewController = [[HeadViewController alloc] initWithSpaceViewSize:backgroundImageView.bounds.size]; 
-    [backgroundImageView addSubview:headViewController.view];
-    
     // Get the image paths of the asteroids
     NSArray *asteroidImagePaths = [[NSBundle mainBundle] pathsForResourcesOfType:@"png" 
                                                                      inDirectory:@"images/asteroids"];
 
     // Create a HeadView for every head image.
-    for (NSInteger i = 0; i < [asteroidImagePaths count]; i++){
+    for (NSInteger i = 4; i < [asteroidImagePaths count]; i++){
         NSString *asteroidImagePath = [asteroidImagePaths objectAtIndex: i];
         
         // Create image object
@@ -72,10 +71,16 @@
                                                               andSpaceViewSize:backgroundImageView.bounds.size];
             // Add asteroid view as a sub view
             [backgroundImageView addSubview:asteroidViewController.view];
+            
+            // Keep track of the added asteroids views. Put in an array.
+            [asteroidViews addObject:asteroidViewController.view];
         }
     }
     
-    
+    // Init the head view controller.
+    // Get the head view from that controller and make it a subview of the background image view
+    headViewController = [[HeadViewController alloc] initWithSpaceViewSize:backgroundImageView.bounds.size]; 
+    [backgroundImageView addSubview:headViewController.view];
     
     // Make the background image view a subview of the main view.
     [mainView addSubview:backgroundImageView];
@@ -116,8 +121,30 @@
     [self initMainView];
     
     headSoundPlayer = [[HeadSoundPlayer alloc]init];
+    
+    
+    // start collision detection.
+    [NSTimer scheduledTimerWithTimeInterval:0.5 
+                                     target:self 
+                                   selector:@selector(detectAsteroidImpact) 
+                                   userInfo:nil 
+                                    repeats:YES];
+    
+    
 }
 
+
+- (void) detectAsteroidImpact{
+    for(NSInteger i = 0; i < [asteroidViews count]; i++){
+        if(CGRectContainsPoint([[asteroidViews objectAtIndex:i] bounds], self.view.bounds.origin)){
+            NSLog(@"IMPACT!");
+        }else{
+            NSLog(@"NO IMPACT!");
+        }
+    }
+    
+}
+ 
 - (void)viewDidUnload
 {
     [super viewDidUnload];

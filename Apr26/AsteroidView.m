@@ -28,6 +28,7 @@
         
         // Place it where we want it to be in space
         self.center = centerPoint;
+        self.backgroundColor = [UIColor yellowColor];
         
         // Add it to space
         [self addSubview:asteroidImageView];
