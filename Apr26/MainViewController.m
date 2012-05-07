@@ -55,7 +55,7 @@
                                                                      inDirectory:@"images/asteroids"];
 
     // Create a HeadView for every head image.
-    for (NSInteger i = 4; i < [asteroidImagePaths count]; i++){
+    for (NSInteger i = 0; i < [asteroidImagePaths count]; i++){
         NSString *asteroidImagePath = [asteroidImagePaths objectAtIndex: i];
         
         // Create image object
@@ -135,11 +135,42 @@
 
 
 - (void) detectAsteroidImpact{
+    
+   
     for(NSInteger i = 0; i < [asteroidViews count]; i++){
-        if(CGRectContainsPoint([[asteroidViews objectAtIndex:i] bounds], self.view.bounds.origin)){
+        
+        // Changing the center point of the asteroid doesn't change to origin value of the asteroid's frame
+        // (it was initialised with (0, 0).
+        CGRect asteroidRect = CGRectMake([[asteroidViews objectAtIndex:i] center].x, 
+                                         [[asteroidViews objectAtIndex:i] center].y, 
+                                         [[asteroidViews objectAtIndex:i] size].width, 
+                                         [[asteroidViews objectAtIndex:i] size].height);
+         
+        // Changing the center point of the head doesn't change to origin value of the head's frame
+        // (it was initialised with (0, 0).
+        CGRect headRect = CGRectMake(   headViewController.view.center.x, 
+                                        headViewController.view.center.y, 
+                                        headViewController.view.bounds.size.width - (headViewController.view.bounds.size.width / 3), 
+                                        headViewController.view.bounds.size.height - (headViewController.view.bounds.size.height / 3));
+        
+
+        if(CGRectIntersectsRect(asteroidRect, headRect)){
             NSLog(@"IMPACT!");
-        }else{
-            NSLog(@"NO IMPACT!");
+            // Make head spin upon impact
+            // TODO: Refine this. Maybe just make the head scale bigger/smaller?
+            // Give a certain amount of lives. Decrement lives when hit by asteroid.
+            // Use gif animation for explosion when run out of lives.
+          
+            // Animation
+            [UIView animateWithDuration: 2.0
+                                  delay: 0.0 
+                                options: UIViewAnimationOptionCurveEaseInOut
+                             animations: ^{
+                                 // define animation
+                                 headViewController.view.transform = CGAffineTransformConcat(headViewController.view.transform, CGAffineTransformMakeRotation(180 * M_PI / 180));
+                             }
+                             completion: NULL
+             ];
         }
     }
     

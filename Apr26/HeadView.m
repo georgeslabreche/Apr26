@@ -26,7 +26,6 @@
         headImageView.image = image;
         
         self.center = centerPoint;
-        self.backgroundColor = [UIColor greenColor];
         
         [self addSubview:headImageView];
     }

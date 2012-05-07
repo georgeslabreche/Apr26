@@ -14,8 +14,6 @@
 // Init with the image of a head
 - (id)initWithImage:(UIImage *)image andCenter:(CGPoint) centerPoint{
     
-    
-    
     CGRect asteroidImageViewFrame = CGRectMake(0, 0, image.size.width, image.size.height);
     self = [super initWithFrame:asteroidImageViewFrame];
     
@@ -28,7 +26,6 @@
         
         // Place it where we want it to be in space
         self.center = centerPoint;
-        self.backgroundColor = [UIColor yellowColor];
         
         // Add it to space
         [self addSubview:asteroidImageView];
