@@ -7,7 +7,6 @@
 //
 
 #import "MainViewController.h"
-#import "HeadViewController.h"
 
 #import "MainView.h"
 
@@ -51,9 +50,11 @@
     headViewController = [[HeadViewController alloc] init]; 
     [backgroundImageView addSubview:headViewController.view];
     
-    
-    asteroidViewController = [[AsteroidViewController alloc] init];
+
+    asteroidViewController = [[AsteroidViewController alloc] initWithSpaceViewSize:backgroundImageView.bounds.size];
     [backgroundImageView addSubview:asteroidViewController.view];
+    
+    //[backgroundImageView 
     
     // Make the background image view a subview of the main view.
     [mainView addSubview:backgroundImageView];

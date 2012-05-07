@@ -16,19 +16,23 @@
     
     
     
-    CGRect asteroidViewFrame = CGRectMake(centerPoint.x, centerPoint.y, image.size.width, image.size.height);
-    self = [super initWithFrame:asteroidViewFrame];
+    CGRect asteroidImageViewFrame = CGRectMake(0, 0, image.size.width, image.size.height);
+    self = [super initWithFrame:asteroidImageViewFrame];
     
     if(self){
         
-        UIImageView *asteroidImageView = [[UIImageView alloc]initWithFrame:asteroidViewFrame];
+        UIImageView *asteroidImageView = [[UIImageView alloc]initWithFrame:asteroidImageViewFrame];
         
-        // Set head image for the image view
+        // Set asteroid image for the image view
         asteroidImageView.image = image;
         
+        // Place it where we want it to be in space
+        self.center = centerPoint;
+        
+        // Add it to space
         [self addSubview:asteroidImageView];
+        
     }
-    
     return self;
 }
 

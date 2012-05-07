@@ -11,6 +11,37 @@
 
 @interface AsteroidViewController : UIViewController{
     AsteroidView *asteroidView;
+    CGSize spaceViewSize;
+    
+    enum {
+        FromLeft,
+        FromRight,
+        FromAbove,
+        FromBellow
+    } AsteroidOriginArea;
+    
+    enum {
+        FromLeftToUpperRight,
+        FromLeftToBottomRight,
+        FromLeftToRight,
+        
+        FromRightToUpperLeft,
+        FromRightToBottomLeft,
+        FromRightToLeft,
+        
+        FromAboveToBellowLeft,
+        FromAboveToBellowRight,
+        FromAboveToBellow,
+        
+        FromBellowToAboveLeft,
+        FromBellowToAboveRight,
+        FromBellowToAbove
+        
+    } TrajectoryOfAsteroid;
+    
+    NSArray *trajectories;
 }
+
+- (id) initWithSpaceViewSize:(CGSize) size;
 
 @end
