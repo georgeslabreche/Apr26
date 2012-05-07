@@ -14,6 +14,8 @@
     UIImage *asteroidImage;
     CGSize spaceViewSize;
     
+    CGFloat rotationAngle;
+    
     CGPoint startPoint;
     CGPoint endPoint;
     

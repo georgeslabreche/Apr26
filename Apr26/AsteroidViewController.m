@@ -31,6 +31,7 @@
     if(self){
         spaceViewSize = size;
         
+        
         NSArray *trajectoriesFromLeft = [NSArray arrayWithObjects:
                                 [NSNumber numberWithInt:FromLeftToUpperRight], 
                                 [NSNumber numberWithInt:FromLeftToBottomRight], 
@@ -209,7 +210,7 @@
     }
     
     else if(randomTrajectoryIndex == FromRightToBottomLeft){
-        NSLog(@"Asteroid Trajecory: Right -> Borrom Left");
+        NSLog(@"Asteroid Trajecory: Right -> Bellow Left");
         
         x2 = getRandomFloat(0, spaceViewSize.width / 2);
         y2 = spaceViewSize.height + asteroidSize.height / 2;
@@ -370,6 +371,8 @@
     // When asteroid view is loaded, launch it!
     NSLog(@"Launching Asteroid! (%f,%f) -> (%f,%f)", startPoint.x, startPoint.y, endPoint.x, endPoint.y);
     
+    rotationAngle = getRandomFloat(0.1, 3.0);
+    
     // Calculate distance between start and end points.
     // We need this distance to caluculate by how many units we will animate the asteroid for every animation frame.
     CGFloat xDistance = abs(startPoint.x - endPoint.x);
@@ -457,6 +460,7 @@
         }
         
         self.view.center = startPoint;
+        self.view.transform = CGAffineTransformRotate(self.view.transform, M_PI * rotationAngle / 180.0);
     }
     
     
