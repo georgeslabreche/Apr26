@@ -340,9 +340,7 @@
     // If you use Interface Builder to create your views, then you must NOT override this method.
    
     // Create asteroid.
-    
-    //asteroidImage = [UIImage imageNamed:@"images/asteroids/asteroid-01.png"];
-    
+
     // This sets Asteroid startPoint and endPoint
     [self initAsteroidTrajection];
     
@@ -422,13 +420,22 @@
     [self initAsteroidAnimation];
     
     
-    // Animate asteroid!
-    // Use NSTimer to reset the center point of the asteroid until it reaches its end point
-    [NSTimer scheduledTimerWithTimeInterval:0.01
-                                     target:self 
-                                   selector:@selector(animateAsteroid) 
-                                   userInfo:nil 
-                                    repeats:YES];
+    // Create a NSTimer fire date with will wait a random amount of seconds before launching the asteroid
+    NSInteger secondsToWait = arc4random() % 6 + 2;
+    NSDate *fireDate = [[NSDate alloc] initWithTimeIntervalSinceNow:secondsToWait];
+    
+    // Use NSTimer to animate the asteroide's trajectory
+    NSTimer *asteroidAnimatorTimer = [[NSTimer alloc]initWithFireDate:fireDate 
+                                                             interval:getRandomFloat(0.005, 0.015)
+                                                               target:self 
+                                                             selector:@selector(animateAsteroid) 
+                                                             userInfo:nil 
+                                                              repeats:YES];
+    
+    // Animate the asteroid!
+    NSRunLoop *currentRunLoop = [NSRunLoop currentRunLoop];
+    [currentRunLoop addTimer:asteroidAnimatorTimer forMode:NSDefaultRunLoopMode];
+    
 }
 
 -(void) animateAsteroid{
