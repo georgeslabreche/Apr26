@@ -47,7 +47,7 @@
     
     // Init the head view controller.
     // Get the head view from that controller and make it a subview of the background image view
-    headViewController = [[HeadViewController alloc] init]; 
+    headViewController = [[HeadViewController alloc] initWithSpaceViewSize:backgroundImageView.bounds.size]; 
     [backgroundImageView addSubview:headViewController.view];
     
 

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface HeadView : UIView
-- (id)initWithImage:(UIImage *)image;
+- (id)initWithImage:(UIImage *)image andCenter:(CGPoint) centerPoint;
 @end

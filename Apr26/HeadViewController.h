@@ -11,11 +11,15 @@
 #import "HeadSoundPlayer.h"
 
 @interface HeadViewController : UIViewController{
+    CGSize spaceViewSize;
+    
     UIDevice *device;
     HeadView *headView;
     CGFloat previousPinchScale;
     
     HeadSoundPlayer *headSoundPlayer;
 }
+
+- (id) initWithSpaceViewSize:(CGSize) size;
 
 @end

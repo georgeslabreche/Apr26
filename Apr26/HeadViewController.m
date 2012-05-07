@@ -24,6 +24,16 @@
     return self;
 }
 
+- (id) initWithSpaceViewSize:(CGSize) size{
+    self = [self initWithNibName:nil bundle:nil];
+    
+    if(self){
+        spaceViewSize = size;
+    }
+    
+    return self;
+}
+
 
 
 // init device rotation handler
@@ -169,7 +179,10 @@
     
     // Create head view and set it as the view of this controller.
     UIImage *headImage = [UIImage imageNamed:@"images/head.png"];
-    headView = [[HeadView alloc] initWithImage:headImage];
+    
+    // We want head to be in the middle of the space view.
+    CGPoint spaceCenterPoint = CGPointMake(spaceViewSize.width / 2, spaceViewSize.height / 2);
+    headView = [[HeadView alloc] initWithImage:headImage andCenter:spaceCenterPoint];
     self.view = headView;
     
     // Init Pinch gesture

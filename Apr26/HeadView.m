@@ -12,7 +12,7 @@
 
 
 // Init with the image of a head
-- (id)initWithImage:(UIImage *)image{
+- (id)initWithImage:(UIImage *)image andCenter:(CGPoint) centerPoint{
  
     CGRect headViewFrame = CGRectMake(0, 0, image.size.width, image.size.height);
     self = [super initWithFrame:headViewFrame];
@@ -24,6 +24,8 @@
         
         // Set head image for the image view
         headImageView.image = image;
+        
+        self.center = centerPoint;
         
         [self addSubview:headImageView];
     }
