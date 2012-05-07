@@ -25,10 +25,11 @@
     return self;
 }
 
-- (id) initWithSpaceViewSize:(CGSize) size{
+- (id) initWithImage:(UIImage *) image andSpaceViewSize:(CGSize) size{
     self = [self initWithNibName:nil bundle:nil];
 
     if(self){
+        asteroidImage = image;
         spaceViewSize = size;
         
         
@@ -339,12 +340,13 @@
     // If you use Interface Builder to create your views, then you must NOT override this method.
    
     // Create asteroid.
-    // Put it in random start point that is outside the visible space view
-    asteroidImage = [UIImage imageNamed:@"images/asteroids/asteroid-01.png"];
+    
+    //asteroidImage = [UIImage imageNamed:@"images/asteroids/asteroid-01.png"];
     
     // This sets Asteroid startPoint and endPoint
     [self initAsteroidTrajection];
     
+    // Put it in random start point that is outside the visible space view (startPoint)
     asteroidView = [[AsteroidView alloc] initWithImage:asteroidImage andCenter: startPoint];
     self.view = asteroidView;
     

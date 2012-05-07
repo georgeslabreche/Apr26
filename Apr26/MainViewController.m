@@ -7,6 +7,7 @@
 //
 
 #import "MainViewController.h"
+#import "AsteroidViewController.h"
 
 #import "MainView.h"
 
@@ -50,9 +51,29 @@
     headViewController = [[HeadViewController alloc] initWithSpaceViewSize:backgroundImageView.bounds.size]; 
     [backgroundImageView addSubview:headViewController.view];
     
+    // Get the image paths of the asteroids
+    NSArray *asteroidImagePaths = [[NSBundle mainBundle] pathsForResourcesOfType:@"png" 
+                                                                     inDirectory:@"images/asteroids"];
 
-    asteroidViewController = [[AsteroidViewController alloc] initWithSpaceViewSize:backgroundImageView.bounds.size];
-    [backgroundImageView addSubview:asteroidViewController.view];
+    // Create a HeadView for every head image.
+    for (NSInteger i = 0; i < [asteroidImagePaths count]; i++){
+        NSString *asteroidImagePath = [asteroidImagePaths objectAtIndex: i];
+        
+        // Create image object
+        UIImage *asteroidImage = [UIImage imageWithContentsOfFile: asteroidImagePath];
+        if (asteroidImage == nil) {
+            NSLog(@"Could not find the image: %@", asteroidImagePath);
+            
+        }else{
+            NSLog (@"Loaded image: %@", asteroidImagePath);
+            
+            AsteroidViewController *asteroidViewController = [[AsteroidViewController alloc] 
+                                                              initWithImage: asteroidImage 
+                                                              andSpaceViewSize:backgroundImageView.bounds.size];
+            // Add asteroid view as a sub view
+            [backgroundImageView addSubview:asteroidViewController.view];
+        }
+    }
     
     
     

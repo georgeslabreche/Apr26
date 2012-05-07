@@ -54,6 +54,6 @@
     NSArray *trajectories;
 }
 
-- (id) initWithSpaceViewSize:(CGSize) size;
+- (id) initWithImage:(UIImage *) image andSpaceViewSize:(CGSize) size;
 
 @end

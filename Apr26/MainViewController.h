@@ -8,12 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "HeadViewController.h"
-#import "AsteroidViewController.h";
 #import "HeadSoundPlayer.h"
 
 @interface MainViewController : UIViewController{
     HeadViewController *headViewController;
-    AsteroidViewController *asteroidViewController;
     HeadSoundPlayer *headSoundPlayer;
 }
 @end
