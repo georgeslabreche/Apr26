@@ -11,7 +11,17 @@
 
 @interface AsteroidViewController : UIViewController{
     AsteroidView *asteroidView;
+    UIImage *asteroidImage;
     CGSize spaceViewSize;
+    
+    CGPoint startPoint;
+    CGPoint endPoint;
+    
+    CGFloat xUnit;
+    CGFloat yUnit;
+    
+    bool incrementX;
+    bool incrementY;
     
     enum {
         FromLeft,

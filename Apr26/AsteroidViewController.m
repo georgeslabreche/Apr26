@@ -339,44 +339,127 @@
    
     // Create asteroid.
     // Put it in random start point that is outside the visible space view
-    UIImage *asteroidImage = [UIImage imageNamed:@"images/asteroids/asteroid-01.png"];
+    asteroidImage = [UIImage imageNamed:@"images/asteroids/asteroid-01.png"];
     
-    // The asteroid can have 4 origins: left, right, above and bellow.
-    NSInteger randomAsteroidOriginIndex = arc4random() % 4; 
- 
-    CGPoint startPoint = [self getAsteroidStartPointForAsteroidSize: asteroidImage.size 
-                                                         comingFrom: randomAsteroidOriginIndex];
+    // This sets Asteroid startPoint and endPoint
+    [self initAsteroidTrajection];
     
     asteroidView = [[AsteroidView alloc] initWithImage:asteroidImage andCenter: startPoint];
     self.view = asteroidView;
     
+   
+    
+}
+
+// Init the trajection of the asteroid
+-(void) initAsteroidTrajection{
+    // The asteroid can have 4 origins: left, right, above and bellow.
+    NSInteger randomAsteroidOriginIndex = arc4random() % 4; 
+    
+    startPoint = [self getAsteroidStartPointForAsteroidSize: asteroidImage.size 
+                                                 comingFrom: randomAsteroidOriginIndex];
+    
     // Get a random target end point for the asteroid:
-    CGPoint endPoint = [self getAsteroidEndPointForAsteroidSize:asteroidImage.size 
-                                                     comingFrom:randomAsteroidOriginIndex];
-    
-    
+    endPoint = [self getAsteroidEndPointForAsteroidSize:asteroidImage.size 
+                                             comingFrom:randomAsteroidOriginIndex];
+}
+
+// Init asteroid animation
+- (void) initAsteroidAnimation
+{
+    // When asteroid view is loaded, launch it!
     NSLog(@"Launching Asteroid! (%f,%f) -> (%f,%f)", startPoint.x, startPoint.y, endPoint.x, endPoint.y);
     
+    // Calculate distance between start and end points.
+    // We need this distance to caluculate by how many units we will animate the asteroid for every animation frame.
+    CGFloat xDistance = abs(startPoint.x - endPoint.x);
+    CGFloat yDistance = abs(startPoint.y - endPoint.y);
     
-    // Launch the asteroid!
     
-    [UIView animateWithDuration: 5.0
-                          delay: 0.0 
-                        options: UIViewAnimationCurveLinear
-                     animations: ^{
-                         // define animation 
-                         self.view.center = endPoint;
-                     }
-                     completion: NULL
-     ];
+    // Calculate animatio unit.
+    // Divide the distance by a value that's larger than the screen width and height
+    CGFloat longestSpaceViewBoundlength = 0;
+    if(spaceViewSize.width > spaceViewSize.height){
+        longestSpaceViewBoundlength = spaceViewSize.width;
+    }else{
+        longestSpaceViewBoundlength = spaceViewSize.height;
+    }
+    
+    xUnit = xDistance / longestSpaceViewBoundlength;
+    yUnit = yDistance / longestSpaceViewBoundlength;
+    
+    // Determine if the animation of the asteroid will be based on
+    // increment or decrement its center point coordinate
+    if(startPoint.x > endPoint.x){
+        // decrement
+        incrementX = false;
+    }
+    else if(startPoint.x < endPoint.x){
+        // increment
+        incrementX = true;
+    }
+    
+    if(startPoint.y > endPoint.y){
+        // decrement
+        incrementY = false;
+    }
+    else if(startPoint.y < endPoint.y){
+        // increment
+        incrementY = true;
+    }
 }
+
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
+    [self initAsteroidAnimation];
     
-    // When asteroid view is loaded, launch it!
+    
+    // Animate asteroid!
+    // Use NSTimer to reset the center point of the asteroid until it reaches its end point
+    [NSTimer scheduledTimerWithTimeInterval:0.01
+                                     target:self 
+                                   selector:@selector(animateAsteroid) 
+                                   userInfo:nil 
+                                    repeats:YES];
+}
+
+-(void) animateAsteroid{
+
+    if( (incrementX && (startPoint.x >= endPoint.x)) ||
+        (!incrementX && (startPoint.x <= endPoint.x)) ||
+        (incrementY && (startPoint.y >= endPoint.y)) ||
+        (!incrementY && (startPoint.y <= endPoint.y))
+       ){
+        
+        NSLog(@"Asteroid animation complete. Reinitialise and relaunch asteroid.");
+        
+        [self initAsteroidTrajection];
+        [self initAsteroidAnimation];
+        
+    
+    }else{
+    
+        if(incrementX){
+            startPoint.x = startPoint.x + xUnit;
+        }
+        else{
+            startPoint.x = startPoint.x - xUnit;
+        }
+    
+        if(incrementY){
+            startPoint.y = startPoint.y + yUnit;  
+        }
+        else{
+            startPoint.y = startPoint.y - yUnit;
+        }
+        
+        self.view.center = startPoint;
+    }
+    
+    
 }
 
 - (void)viewDidUnload
