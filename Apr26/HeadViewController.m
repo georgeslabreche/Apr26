@@ -192,8 +192,7 @@
     // Init device rotation notification
     [self initDeviceRotationHandler];
     
-    headSoundPlayer = [[HeadSoundPlayer alloc]init];
-    
+    headSoundPlayer = [HeadSoundPlayer sharedInstance];  
 }
 
 - (void)viewDidUnload

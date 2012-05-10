@@ -9,6 +9,7 @@
 #include <stdlib.h>
 #import "AsteroidViewController.h"
 #import "AsteroidView.h"
+#import "HeadSoundPlayer.h"
 
 @interface AsteroidViewController ()
 
@@ -26,12 +27,12 @@
 }
 
 - (id) initWithImage:(UIImage *) image andSpaceViewSize:(CGSize) size{
+    
     self = [self initWithNibName:nil bundle:nil];
 
     if(self){
         asteroidImage = image;
         spaceViewSize = size;
-        
         
         NSArray *trajectoriesFromLeft = [NSArray arrayWithObjects:
                                 [NSNumber numberWithInt:FromLeftToUpperRight], 
@@ -347,8 +348,6 @@
     // Put it in random start point that is outside the visible space view (startPoint)
     asteroidView = [[AsteroidView alloc] initWithImage:asteroidImage andCenter: startPoint];
     self.view = asteroidView;
-    
-   
     
 }
 

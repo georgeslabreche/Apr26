@@ -12,16 +12,28 @@
 @implementation HeadSoundPlayer
 
 @synthesize moveAudioPlayer;
+@synthesize ouchAudioPlayer;
+
++ (id) sharedInstance
+{
+    static dispatch_once_t pred = 0;
+    __strong static id _sharedObject = nil;
+    dispatch_once(&pred, ^{
+        _sharedObject = [[self alloc] init]; // or some other init method
+    });
+    return _sharedObject;
+}
 
 - (id) init{
     self = [super init];
     
     if(self){
-        moveAudioPlayer = [self buildPlayerWithResource:@"move" inDirectory: @"sounds"];
-        spinAudioPlayer = [self buildPlayerWithResource:@"spin" inDirectory: @"sounds"];
-        shrinkAudioPlayer = [self buildPlayerWithResource:@"shrink" inDirectory: @"sounds"];
-        expandAudioPlayer = [self buildPlayerWithResource:@"expand" inDirectory: @"sounds"];
-        rotateAudioPlayer = [self buildPlayerWithResource:@"rotate" inDirectory: @"sounds"];
+        moveAudioPlayer = [self buildPlayerWithResource:@"move" ofType:@"wav" inDirectory: @"sounds"];
+        spinAudioPlayer = [self buildPlayerWithResource:@"spin" ofType:@"wav" inDirectory: @"sounds"];
+        shrinkAudioPlayer = [self buildPlayerWithResource:@"shrink" ofType:@"wav" inDirectory: @"sounds"];
+        expandAudioPlayer = [self buildPlayerWithResource:@"expand" ofType:@"wav" inDirectory: @"sounds"];
+        rotateAudioPlayer = [self buildPlayerWithResource:@"rotate" ofType:@"wav" inDirectory: @"sounds"];
+        ouchAudioPlayer = [self buildPlayerWithResource:@"ouch" ofType:@"mp3" inDirectory: @"sounds"]; 
         
         audioPlayerArray = [NSArray arrayWithObjects:
                             moveAudioPlayer,
@@ -29,6 +41,7 @@
                             shrinkAudioPlayer,
                             expandAudioPlayer,
                             rotateAudioPlayer,
+                            ouchAudioPlayer,
                             nil];
     }
     
@@ -98,6 +111,18 @@
     }
 }
 
+-(void) playOuchSound{
+    NSLog(@"Play device ouch sound");
+    if([ouchAudioPlayer isPlaying] == false){
+        
+        // Stop any other sound
+        [self stopAllPlayers];
+        
+        // Play sound
+        [ouchAudioPlayer play];
+    }
+}
+
 -(void) stopAllPlayers{
     
     // Stop any other sound
@@ -112,7 +137,7 @@
     
 }
 
-- (AVAudioPlayer *) buildPlayerWithResource:(NSString*)soundFilename inDirectory:(NSString*) directoryName{
+- (AVAudioPlayer *) buildPlayerWithResource:(NSString*)soundFilename ofType:(NSString*) type inDirectory:(NSString*) directoryName{
     
     AVAudioPlayer *player;
     
@@ -124,7 +149,7 @@
     
     //The path is the filename.
     
-    NSString *path = [bundle pathForResource: soundFilename ofType: @"wav" inDirectory:directoryName];
+    NSString *path = [bundle pathForResource: soundFilename ofType: type inDirectory:directoryName];
     if (path == nil) {
         NSLog(@"could not get the mp3 sound path.");
         return nil;

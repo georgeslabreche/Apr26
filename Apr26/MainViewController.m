@@ -120,7 +120,7 @@
     // init the main view.
     [self initMainView];
     
-    headSoundPlayer = [[HeadSoundPlayer alloc]init];
+    headSoundPlayer = [HeadSoundPlayer sharedInstance];
     
     
     // start collision detection.
@@ -141,10 +141,12 @@
         
         // Changing the center point of the asteroid doesn't change to origin value of the asteroid's frame
         // (it was initialised with (0, 0).
+        // Don't use exact height and width of the view but smaller one, this is to take into account parts
+        // That are transparent
         CGRect asteroidRect = CGRectMake([[asteroidViews objectAtIndex:i] center].x, 
                                          [[asteroidViews objectAtIndex:i] center].y, 
-                                         [[asteroidViews objectAtIndex:i] size].width, 
-                                         [[asteroidViews objectAtIndex:i] size].height);
+                                         [[asteroidViews objectAtIndex:i] size].width - ([[asteroidViews objectAtIndex:i] size].width / 3), 
+                                         [[asteroidViews objectAtIndex:i] size].height - ([[asteroidViews objectAtIndex:i] size].height / 3));
          
         // Changing the center point of the head doesn't change to origin value of the head's frame
         // (it was initialised with (0, 0).
@@ -156,13 +158,14 @@
 
         if(CGRectIntersectsRect(asteroidRect, headRect)){
             NSLog(@"IMPACT!");
+            
             // Make head spin upon impact
             // TODO: Refine this. Maybe just make the head scale bigger/smaller?
             // Give a certain amount of lives. Decrement lives when hit by asteroid.
             // Use gif animation for explosion when run out of lives.
           
             // Animation
-            [UIView animateWithDuration: 2.0
+            [UIView animateWithDuration: [headSoundPlayer ouchAudioPlayer].duration
                                   delay: 0.0 
                                 options: UIViewAnimationOptionCurveEaseInOut
                              animations: ^{
@@ -171,6 +174,9 @@
                              }
                              completion: NULL
              ];
+            
+            //play ouch sound
+            [headSoundPlayer playOuchSound];
         }
     }
     

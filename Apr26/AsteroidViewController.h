@@ -52,6 +52,7 @@
     } TrajectoryOfAsteroid;
     
     NSArray *trajectories;
+
 }
 
 - (id) initWithImage:(UIImage *) image andSpaceViewSize:(CGSize) size;
