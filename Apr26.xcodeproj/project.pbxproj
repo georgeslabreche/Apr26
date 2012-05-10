@@ -18,9 +18,10 @@
 		1CFED7FC1544C07B00DB3701 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFED7FB1544C07B00DB3701 /* main.m */; };
 		1CFED8001544C07B00DB3701 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFED7FF1544C07B00DB3701 /* AppDelegate.m */; };
 		1CFED8081544C30F00DB3701 /* MainViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFED8071544C30F00DB3701 /* MainViewController.m */; };
-		1CFED80E1544C76C00DB3701 /* MainView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFED80D1544C76C00DB3701 /* MainView.m */; };
 		1CFED8171544CA8D00DB3701 /* HeadView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1CFED8161544CA8D00DB3701 /* HeadView.m */; };
 		1CFED8191544CE5B00DB3701 /* images in Resources */ = {isa = PBXBuildFile; fileRef = 1CFED8181544CE5B00DB3701 /* images */; };
+		427D7491155C7D0400408DFD /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427D7490155C7D0400408DFD /* MenuViewController.m */; };
+		427D7495155C860200408DFD /* SpaceViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 427D7494155C860200408DFD /* SpaceViewController.m */; };
 		9511EB3C154A08ED0024CB84 /* AsteroidView.m in Sources */ = {isa = PBXBuildFile; fileRef = 9511EB3B154A08ED0024CB84 /* AsteroidView.m */; };
 		9511EB40154A090A0024CB84 /* AsteroidViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9511EB3F154A090A0024CB84 /* AsteroidViewController.m */; };
 /* End PBXBuildFile section */
@@ -44,11 +45,13 @@
 		1CFED7FF1544C07B00DB3701 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1CFED8061544C30F00DB3701 /* MainViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainViewController.h; sourceTree = "<group>"; };
 		1CFED8071544C30F00DB3701 /* MainViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainViewController.m; sourceTree = "<group>"; };
-		1CFED80C1544C76C00DB3701 /* MainView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainView.h; sourceTree = "<group>"; };
-		1CFED80D1544C76C00DB3701 /* MainView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainView.m; sourceTree = "<group>"; };
 		1CFED8151544CA8D00DB3701 /* HeadView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HeadView.h; sourceTree = "<group>"; };
 		1CFED8161544CA8D00DB3701 /* HeadView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HeadView.m; sourceTree = "<group>"; };
 		1CFED8181544CE5B00DB3701 /* images */ = {isa = PBXFileReference; lastKnownFileType = folder; path = images; sourceTree = SOURCE_ROOT; };
+		427D748F155C7D0400408DFD /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		427D7490155C7D0400408DFD /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		427D7493155C860200408DFD /* SpaceViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpaceViewController.h; sourceTree = "<group>"; };
+		427D7494155C860200408DFD /* SpaceViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpaceViewController.m; sourceTree = "<group>"; };
 		9511EB3A154A08ED0024CB84 /* AsteroidView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsteroidView.h; sourceTree = "<group>"; };
 		9511EB3B154A08ED0024CB84 /* AsteroidView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsteroidView.m; sourceTree = "<group>"; };
 		9511EB3E154A090A0024CB84 /* AsteroidViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsteroidViewController.h; sourceTree = "<group>"; };
@@ -106,8 +109,6 @@
 				1CFED7F61544C07B00DB3701 /* Supporting Files */,
 				1CFED8061544C30F00DB3701 /* MainViewController.h */,
 				1CFED8071544C30F00DB3701 /* MainViewController.m */,
-				1CFED80C1544C76C00DB3701 /* MainView.h */,
-				1CFED80D1544C76C00DB3701 /* MainView.m */,
 				1CFED8151544CA8D00DB3701 /* HeadView.h */,
 				1CFED8161544CA8D00DB3701 /* HeadView.m */,
 				1C7A0DEF15462BE5000B98D2 /* HeadSoundPlayer.h */,
@@ -118,6 +119,10 @@
 				9511EB3B154A08ED0024CB84 /* AsteroidView.m */,
 				9511EB3E154A090A0024CB84 /* AsteroidViewController.h */,
 				9511EB3F154A090A0024CB84 /* AsteroidViewController.m */,
+				427D748F155C7D0400408DFD /* MenuViewController.h */,
+				427D7490155C7D0400408DFD /* MenuViewController.m */,
+				427D7493155C860200408DFD /* SpaceViewController.h */,
+				427D7494155C860200408DFD /* SpaceViewController.m */,
 			);
 			path = Apr26;
 			sourceTree = "<group>";
@@ -201,12 +206,13 @@
 				1CFED7FC1544C07B00DB3701 /* main.m in Sources */,
 				1CFED8001544C07B00DB3701 /* AppDelegate.m in Sources */,
 				1CFED8081544C30F00DB3701 /* MainViewController.m in Sources */,
-				1CFED80E1544C76C00DB3701 /* MainView.m in Sources */,
 				1CFED8171544CA8D00DB3701 /* HeadView.m in Sources */,
 				1C7A0DF115462BE5000B98D2 /* HeadSoundPlayer.m in Sources */,
 				1C7A0DF415462F0F000B98D2 /* HeadViewController.m in Sources */,
 				9511EB3C154A08ED0024CB84 /* AsteroidView.m in Sources */,
 				9511EB40154A090A0024CB84 /* AsteroidViewController.m in Sources */,
+				427D7491155C7D0400408DFD /* MenuViewController.m in Sources */,
+				427D7495155C860200408DFD /* SpaceViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,6 +8,8 @@
 
 #import "AppDelegate.h"
 #import "MainViewController.h"
+#import "MenuViewController.h"
+#import "SpaceViewController.h"
 
 @implementation AppDelegate
 
@@ -20,9 +22,9 @@
     self.window = [[UIWindow alloc] initWithFrame:mainScreenFrame];
     // Override point for customization after application launch.
     
-    MainViewController *mainViewController = [[MainViewController alloc]init];
+    SpaceViewController *spaceViewController = [[SpaceViewController alloc]init];
 
-    self.window.rootViewController = mainViewController;
+    self.window.rootViewController = spaceViewController;
        
     [self.window makeKeyAndVisible];
     return YES;
