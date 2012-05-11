@@ -29,9 +29,7 @@
     self = [super initWithNibName:nil bundle:nil];
     if(self){
         
-        //UIView *mainView =  [[UIView alloc]init];
-        //self.view = mainView;
-        
+        gameStarted = false;
     }
     
     return self;
@@ -46,7 +44,7 @@
     MenuViewController *menuViewController  = [[MenuViewController alloc]init];
     spaceViewController = [[SpaceViewController alloc]init];
     
-    
+    // Array of views
     views = [NSArray arrayWithObjects:
              menuViewController.view,
              spaceViewController.view,
@@ -57,32 +55,56 @@
     
     // add single tap gesture
     singleTapGestureRecognizer = [[UITapGestureRecognizer alloc]
-                                         initWithTarget: self action: @selector(swipe:)
-                                         ];
+                                  initWithTarget: self action: @selector(transitionToGameView:)
+                                  ];
     singleTapGestureRecognizer.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer: singleTapGestureRecognizer];
+    
 }
 
-- (void) swipe: (UISwipeGestureRecognizer *) recognizer {
-    NSLog(@"Switch view.");
-
+- (void) transitionToGameView: (UISwipeGestureRecognizer *) recognizer {
     [UIView transitionFromView: [views objectAtIndex: 0]
                         toView: [views objectAtIndex: 1]
                       duration: 1
                        options: UIViewAnimationOptionTransitionCrossDissolve
                     completion: NULL
-    ];
+     ];
     
     
-        
+    // Unregister the tap gesture, no longer required.
     if(singleTapGestureRecognizer != nil){
         [self.view removeGestureRecognizer:singleTapGestureRecognizer];
     }
     
     [spaceViewController startGame];
     
+}
+
+// Start the game.
+//TODO: Once the game has started, this should pass the event to the controller
+/*
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if(!gameStarted){
+        [UIView transitionFromView: [views objectAtIndex: 0]
+                            toView: [views objectAtIndex: 1]
+                          duration: 1
+                           options: UIViewAnimationOptionTransitionCrossDissolve
+                        completion: NULL
+         ];
+    
+        [spaceViewController startGame];
+        
+        gameStarted = true;
+    }else{
+        // If game has started, defer the touch event to the game view
+        // We can't do something like this:
+        //[spaceViewController touchesBegan:touches withEvent:event];
+    }
     
 }
+*/
+
 
 - (void)viewDidUnload
 {

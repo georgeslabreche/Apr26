@@ -16,6 +16,8 @@
 	UITapGestureRecognizer *singleTapGestureRecognizer;
     
     SpaceViewController *spaceViewController;
+    
+    bool gameStarted;
 }
 
 @end
