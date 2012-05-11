@@ -7,8 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "MenuViewController.h"
-#import "SpaceViewController.h"
 #import "MainViewController.h"
 
 @implementation AppDelegate
@@ -21,11 +19,6 @@
                     
     self.window = [[UIWindow alloc] initWithFrame:mainScreenFrame];
     // Override point for customization after application launch.
-    
-    /*
-    SpaceViewController *spaceViewController = [[SpaceViewController alloc]init];
-    MenuViewController *menuViewController  = [[MenuViewController alloc]init];
-    */
     
     MainViewController *mainViewController = [[MainViewController alloc]init];
     
