@@ -22,4 +22,6 @@
     HeadSoundPlayer *headSoundPlayer;
 }
 
+-(void) startGame;
+
 @end

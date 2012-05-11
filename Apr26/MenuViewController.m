@@ -28,11 +28,21 @@
     
     if(self){
         
+        UIImage *titleBackgound = [UIImage imageNamed:@"images/titlebackground.jpg"];
+        UIImageView *titleBackgoundImageView = [[UIImageView alloc] initWithImage:titleBackgound];
+        
         // Create title view
-        UIImage *titleImage = [UIImage imageNamed:@"title.png"];
+        UIImage *titleImage = [UIImage imageNamed:@"images/title.png"];
         UIImageView *titleImageView = [[UIImageView alloc] initWithImage:titleImage];
         
-        self.view = titleImageView;
+        //CGRect bounds = [[UIScreen mainScreen]bounds];
+        //CGRect titleRect = CGRectMake(0, 0, bounds.size.width, bounds.size.height); 
+        UIView *titleView = [[UIView alloc]init];
+        
+        [titleView addSubview:titleBackgoundImageView];
+        [titleView addSubview:titleImageView];
+        
+        self.view = titleView;
         
     }
     

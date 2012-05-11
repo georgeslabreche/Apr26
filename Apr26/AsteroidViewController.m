@@ -420,7 +420,7 @@
     
     
     // Create a NSTimer fire date with will wait a random amount of seconds before launching the asteroid
-    NSInteger secondsToWait = arc4random() % 6 + 2;
+    NSInteger secondsToWait = arc4random() % 10 + 4;
     NSDate *fireDate = [[NSDate alloc] initWithTimeIntervalSinceNow:secondsToWait];
     
     // Use NSTimer to animate the asteroide's trajectory

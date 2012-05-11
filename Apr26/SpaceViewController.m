@@ -25,8 +25,13 @@
     return self;
 }
 
+-(void) startGame{
+    [self initSpaceView];
+    [self initCollisionDetection];
+}
+
 // Init the main view
-- (void) initMainView{
+- (void) initSpaceView{
     
     // Init our asteroid views array
     asteroidViews = [[NSMutableArray alloc] init];
@@ -87,6 +92,18 @@
     self.view = spaceView;
 }
 
+-(void) initCollisionDetection{
+    headSoundPlayer = [HeadSoundPlayer sharedInstance];
+    
+    
+    // start collision detection.
+    [NSTimer scheduledTimerWithTimeInterval:0.5 
+                                     target:self 
+                                   selector:@selector(detectAsteroidImpact) 
+                                   userInfo:nil 
+                                    repeats:YES];
+}
+
 // touch detection to tell the head where to go.
 - (void) touchesEnded: (NSSet *) touches withEvent: (UIEvent *) event {
     
@@ -114,20 +131,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
-    // init the main view.
-    [self initMainView];
-    
-    headSoundPlayer = [HeadSoundPlayer sharedInstance];
-    
-    
-    // start collision detection.
-    [NSTimer scheduledTimerWithTimeInterval:0.5 
-                                     target:self 
-                                   selector:@selector(detectAsteroidImpact) 
-                                   userInfo:nil 
-                                    repeats:YES];
-    
     
 }
 
