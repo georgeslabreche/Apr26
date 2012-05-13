@@ -9,6 +9,7 @@
 #import "MainViewController.h"
 #import "MenuViewController.h"
 #import "SpaceViewController.h"
+#import "MusicPlayer.h"
 
 @interface MainViewController ()
 
@@ -30,6 +31,7 @@
     if(self){
         
         gameStarted = false;
+        musicPlayer = [MusicPlayer sharedInstance];
     }
     
     return self;
@@ -60,6 +62,8 @@
     singleTapGestureRecognizer.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer: singleTapGestureRecognizer];
     
+    [musicPlayer playIntroMusic];
+    
 }
 
 - (void) transitionToGameView: (UISwipeGestureRecognizer *) recognizer {
@@ -77,6 +81,7 @@
     }
     
     [spaceViewController startGame];
+    [musicPlayer playGameMusic];
     
 }
 

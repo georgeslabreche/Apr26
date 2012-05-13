@@ -14,6 +14,7 @@
 @synthesize moveAudioPlayer;
 @synthesize ouchAudioPlayer;
 
+// make singleton
 + (id) sharedInstance
 {
     static dispatch_once_t pred = 0;

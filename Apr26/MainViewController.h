@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "SpaceViewController.h"
+#import "MusicPlayer.h"
 
 @interface MainViewController : UIViewController{
     //holds the two subviews we transtion between
@@ -18,6 +19,7 @@
     SpaceViewController *spaceViewController;
     
     bool gameStarted;
+    MusicPlayer *musicPlayer;
 }
 
 @end
