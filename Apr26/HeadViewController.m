@@ -53,19 +53,19 @@
 }
 
 // init rotation gesture handler
-- (void) initRotationGesture{
+- (void) initHeadRotationGesture{
     NSLog(@"Initialise rotation gesture handler...");
     
     // Register rotation gesture recognizer
     UIRotationGestureRecognizer *rotationRecognizer = [[UIRotationGestureRecognizer alloc]
                                                        initWithTarget:self action:@selector(handleRotation:)
                                                        ];
-    [self handleRotation: rotationRecognizer];
+    [self handleHeadRotation: rotationRecognizer];
     [headView addGestureRecognizer:rotationRecognizer];
 }
 
 // Handle rotation
-- (void) handleRotation:(UIRotationGestureRecognizer *)recognizer{
+- (void) handleHeadRotation:(UIRotationGestureRecognizer *)recognizer{
     NSLog(@"Handle rotation");
     
     [headSoundPlayer playSpinSound];
@@ -187,7 +187,7 @@
     // Init Pinch gesture
     [self initPinchGesture];
     
-    [self initRotationGesture];
+    [self initHeadRotationGesture];
     
     // Init device rotation notification
     [self initDeviceRotationHandler];
