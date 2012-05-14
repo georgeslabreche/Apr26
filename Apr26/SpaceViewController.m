@@ -25,6 +25,16 @@
     return self;
 }
 
+-(id)init{
+    self = [super initWithNibName:nil bundle:nil];
+    if(self){
+        headSoundPlayer = [HeadSoundPlayer sharedInstance];
+    }
+    
+    return self;
+}
+
+
 -(void) startGame{
     [self initSpaceView];
     [self initCollisionDetection];
@@ -93,9 +103,7 @@
 }
 
 -(void) initCollisionDetection{
-    headSoundPlayer = [HeadSoundPlayer sharedInstance];
-    
-    
+
     // start collision detection.
     [NSTimer scheduledTimerWithTimeInterval:0.5 
                                      target:self 

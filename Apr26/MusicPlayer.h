@@ -8,13 +8,16 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVAudioPlayer.h>
+#import "AudioPlayer.h"
 
-@interface MusicPlayer : NSObject{
+@interface MusicPlayer : AudioPlayer{
     AVAudioPlayer *gameIntroMusicPlayer;
     AVAudioPlayer *gameMusicPlayer;
 }
 
+// Singleton access
 + (id) sharedInstance;
+
 -(void) playIntroMusic;
 -(void) playGameMusic;
 

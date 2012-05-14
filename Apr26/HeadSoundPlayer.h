@@ -8,9 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import <AVFoundation/AVAudioPlayer.h>
+#import "AudioPlayer.h"
 
-@interface HeadSoundPlayer : NSObject{
+@interface HeadSoundPlayer : AudioPlayer{
     
+    // Using AVAudioPlayer is too much for these sound bits that are lesser than 30 seconds
+    // but we are just experimenting here and it's the easiest way to control sound (pause, stop, play methods etc)
     AVAudioPlayer *moveAudioPlayer;
     AVAudioPlayer *spinAudioPlayer;
     AVAudioPlayer *shrinkAudioPlayer;
@@ -28,7 +31,9 @@
 @property AVAudioPlayer* moveAudioPlayer;
 @property AVAudioPlayer* ouchAudioPlayer;
 
+// Singleton access
 + (id) sharedInstance;
+
 -(void) playSpinSound;
 -(void) playMoveSound;
 -(void) playShrinkSound;

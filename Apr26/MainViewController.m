@@ -7,8 +7,6 @@
 //
 
 #import "MainViewController.h"
-#import "MenuViewController.h"
-#import "SpaceViewController.h"
 #import "MusicPlayer.h"
 
 @interface MainViewController ()
@@ -43,7 +41,7 @@
 	// Do any additional setup after loading the view.
     
     // Our views
-    MenuViewController *menuViewController  = [[MenuViewController alloc]init];
+    menuViewController  = [[MenuViewController alloc]init];
     spaceViewController = [[SpaceViewController alloc]init];
     
     // Array of views

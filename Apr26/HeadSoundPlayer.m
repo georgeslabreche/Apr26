@@ -6,7 +6,6 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
-#import <AVFoundation/AVAudioPlayer.h>
 #import "HeadSoundPlayer.h"
 
 @implementation HeadSoundPlayer
@@ -14,7 +13,9 @@
 @synthesize moveAudioPlayer;
 @synthesize ouchAudioPlayer;
 
-// make singleton
+
+
+// Make this class a singleton
 + (id) sharedInstance
 {
     static dispatch_once_t pred = 0;
@@ -25,16 +26,23 @@
     return _sharedObject;
 }
 
+
 - (id) init{
     self = [super init];
     
     if(self){
-        moveAudioPlayer = [self buildPlayerWithResource:@"move" ofType:@"wav" inDirectory: @"sounds"];
-        spinAudioPlayer = [self buildPlayerWithResource:@"spin" ofType:@"wav" inDirectory: @"sounds"];
-        shrinkAudioPlayer = [self buildPlayerWithResource:@"shrink" ofType:@"wav" inDirectory: @"sounds"];
-        expandAudioPlayer = [self buildPlayerWithResource:@"expand" ofType:@"wav" inDirectory: @"sounds"];
-        rotateAudioPlayer = [self buildPlayerWithResource:@"rotate" ofType:@"wav" inDirectory: @"sounds"];
-        ouchAudioPlayer = [self buildPlayerWithResource:@"ouch" ofType:@"mp3" inDirectory: @"sounds"]; 
+        // Init players
+        moveAudioPlayer = [super buildPlayerWithResource:@"move" ofType:@"wav" inDirectory: @"sounds" withVolume:2.0  andNumberOfLoops:0];
+        
+        spinAudioPlayer = [super buildPlayerWithResource:@"spin" ofType:@"wav" inDirectory: @"sounds" withVolume:2.0  andNumberOfLoops:0];
+        
+        shrinkAudioPlayer = [super buildPlayerWithResource:@"shrink" ofType:@"wav" inDirectory: @"sounds" withVolume:2.0  andNumberOfLoops:0];
+        
+        expandAudioPlayer = [super buildPlayerWithResource:@"expand" ofType:@"wav" inDirectory: @"sounds" withVolume:2.0  andNumberOfLoops:0];
+        
+        rotateAudioPlayer = [super buildPlayerWithResource:@"rotate" ofType:@"wav" inDirectory: @"sounds" withVolume:2.0  andNumberOfLoops:0];
+        
+        ouchAudioPlayer = [super buildPlayerWithResource:@"ouch" ofType:@"mp3" inDirectory: @"sounds" withVolume:2.0  andNumberOfLoops:0]; 
         
         audioPlayerArray = [NSArray arrayWithObjects:
                             moveAudioPlayer,
@@ -136,49 +144,6 @@
         }
     }
     
-}
-
-- (AVAudioPlayer *) buildPlayerWithResource:(NSString*)soundFilename ofType:(NSString*) type inDirectory:(NSString*) directoryName{
-    
-    AVAudioPlayer *player;
-    
-    NSBundle *bundle = [NSBundle mainBundle];
-    if (bundle == nil) {
-        NSLog(@"could not get the main bundle.");
-        return nil;
-    }
-    
-    //The path is the filename.
-    
-    NSString *path = [bundle pathForResource: soundFilename ofType: type inDirectory:directoryName];
-    if (path == nil) {
-        NSLog(@"could not get the mp3 sound path.");
-        return nil;
-    }
-    
-    NSLog(@"path == \"%@\"", path);
-    
-    NSURL *url = [NSURL fileURLWithPath: path isDirectory: NO];
-    NSLog(@"url == \"%@\"", url);
-    
-    NSError *error = nil;
-    player = [[AVAudioPlayer alloc]
-              initWithContentsOfURL: url error: &error];
-    if (player == nil) {
-        NSLog(@"error == %@", error);
-        return nil;
-    }
-    
-    // player properties
-    player.volume = 2.0;
-    player.numberOfLoops = 0;
-    
-    if (![player prepareToPlay]) {
-        NSLog(@"could not prepare to play.");
-        return nil;
-    } 
-    
-    return player;
 }
 
 

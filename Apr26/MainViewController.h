@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MenuViewController.h"
 #import "SpaceViewController.h"
 #import "MusicPlayer.h"
 
@@ -17,6 +18,7 @@
 	UITapGestureRecognizer *singleTapGestureRecognizer;
     
     SpaceViewController *spaceViewController;
+    MenuViewController *menuViewController;
     
     bool gameStarted;
     MusicPlayer *musicPlayer;
