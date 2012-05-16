@@ -41,6 +41,7 @@
 
 // start the game
 -(void) startGame{
+    // TODO: fix the fact that the game only properly starts the first time and not subsequent times
     [self initSpaceView];
     [self initTimeTracker];
     [self initCollisionDetection];
