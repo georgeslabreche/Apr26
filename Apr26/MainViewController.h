@@ -9,19 +9,23 @@
 #import <UIKit/UIKit.h>
 #import "MenuViewController.h"
 #import "SpaceViewController.h"
-#import "MusicPlayer.h"
 
 @interface MainViewController : UIViewController{
     //holds the two subviews we transtion between
 	NSArray *views;
     
-	UITapGestureRecognizer *singleTapGestureRecognizer;
-    
-    SpaceViewController *spaceViewController;
     MenuViewController *menuViewController;
+    SpaceViewController *spaceViewController;
     
-    bool gameStarted;
+    UITapGestureRecognizer *singleTapGestureRecognizer;
     MusicPlayer *musicPlayer;
+    
 }
+
+@property MenuViewController *menuViewController;
+@property SpaceViewController *spaceViewController;
+
+// Needs to be reinit every time we go back to the menu.
+-(void) initSingleTapGestureRecognizer;
 
 @end

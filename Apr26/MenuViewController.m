@@ -27,6 +27,7 @@
     self = [super initWithNibName:nil bundle:nil];
     
     if(self){
+        musicPlayer = [MusicPlayer sharedInstance];
         
         // BACKGROUND VIEW
         // Create background image view. This view contains the game title/menu background image.
@@ -76,11 +77,12 @@
         [titleViewContainer addSubview:starringLabel];                           
         
         self.view = titleViewContainer;
-        
+
     }
     
     return self;
 }
+
 
 - (void)viewDidLoad
 {

@@ -6,8 +6,10 @@
 //  Copyright (c) 2012 __MyCompanyName__. All rights reserved.
 //
 
+#import "AppDelegate.h"
 #import "SpaceViewController.h"
 #import "AsteroidViewController.h"
+#import "MusicPlayer.h"
 
 @interface SpaceViewController ()
 
@@ -28,16 +30,49 @@
 -(id)init{
     self = [super initWithNibName:nil bundle:nil];
     if(self){
+        musicPlayer = [MusicPlayer sharedInstance];
         headSoundPlayer = [HeadSoundPlayer sharedInstance];
+        lives = 3;
+        survivalTimeTracker = 0;
     }
     
     return self;
 }
 
-
+// start the game
 -(void) startGame{
     [self initSpaceView];
+    [self initTimeTracker];
     [self initCollisionDetection];
+}
+
+// Got to game intro/menu view
+- (void) endGame{
+    // Stop collision detection
+    [collisionDetectionTimer invalidate];
+    
+    // nil asteroid views array
+    asteroidViews = nil;
+    
+    // nil headViewController
+    headViewController = nil;
+    
+    // nil lives left label
+    //livesLeftLabel = nil;
+    
+    // reset values for life and countdown
+    lives = 3;
+    survivalTimeTracker = 0;
+    
+    
+    // Stop play music, start playing intro music
+    [musicPlayer playIntroMusic];
+    
+    // Go back to game intro/menu view.
+    AppDelegate *delegate=[[UIApplication sharedApplication] delegate];
+    [delegate transitionToIntroView];
+    
+    
 }
 
 // Init the main view
@@ -46,23 +81,25 @@
     // Init our asteroid views array
     asteroidViews = [[NSMutableArray alloc] init];
     
-    // Create and set the main view
+    // Create and set the space view
     CGRect mainScreenBounds = [[UIScreen mainScreen]bounds];
     UIView *spaceView = [[UIView alloc]initWithFrame:mainScreenBounds];
     
+    // BACKGROUND VIEW
     // Create the image view that will serve as a background.
     // We use an image view because image views automatically scale the the background image.
     UIImageView *backgroundImageView = [[UIImageView alloc]initWithFrame:spaceView.frame];
-    
-    // Enabled detection of gestures and touches.
-    backgroundImageView.userInteractionEnabled = YES;
-    
+
     // Get background image
     UIImage *backgoundImage = [UIImage imageNamed:@"images/background.png"];
     
     // Set background image for the background image view
     backgroundImageView.image = backgoundImage;
     
+    // Make the background image view a subview of the main view.
+    [spaceView addSubview:backgroundImageView];
+    
+    // ASTEROID VIEWS
     // Get the image paths of the asteroids
     NSArray *asteroidImagePaths = [[NSBundle mainBundle] pathsForResourcesOfType:@"png" 
                                                                      inDirectory:@"images/asteroids"];
@@ -83,33 +120,61 @@
                                                               initWithImage: asteroidImage 
                                                               andSpaceViewSize:backgroundImageView.bounds.size];
             // Add asteroid view as a sub view
-            [backgroundImageView addSubview:asteroidViewController.view];
+            [spaceView addSubview:asteroidViewController.view];
             
             // Keep track of the added asteroids views. Put in an array.
             [asteroidViews addObject:asteroidViewController.view];
         }
     }
     
+    // HEAD VIEW
     // Init the head view controller.
     // Get the head view from that controller and make it a subview of the background image view
     headViewController = [[HeadViewController alloc] initWithSpaceViewSize:backgroundImageView.bounds.size]; 
-    [backgroundImageView addSubview:headViewController.view];
+    [spaceView addSubview:headViewController.view];
     
-    // Make the background image view a subview of the main view.
-    [spaceView addSubview:backgroundImageView];
+    // SURVIVAL TIME TRACKING VIEW
+    CGRect timeSurvivedLabelRect = CGRectMake(0, 0, 100, 25);
+    survivalTimeLabel = [[UILabel alloc]initWithFrame:timeSurvivedLabelRect];
+    survivalTimeLabel.text = [[NSString alloc]initWithFormat:@" %u", survivalTimeTracker];
+    survivalTimeLabel.backgroundColor = [UIColor clearColor];
+    survivalTimeLabel.textColor = [UIColor colorWithRed:1 green:0.8 blue:0 alpha:1]; /*#ffcc00*/
+    survivalTimeLabel.font = [UIFont fontWithName:@"CourierNewPS-ItalicMT" size:18];
+    
+    // LIVES LEFT VIEW
+    CGRect livesLeftLabelRect = CGRectMake(spaceView.bounds.size.width - 100, 0, 100, 25);
+    livesLeftLabel = [[UILabel alloc]initWithFrame:livesLeftLabelRect];
+    livesLeftLabel.text = [[NSString alloc]initWithFormat:@"Lives: %u", lives];
+    livesLeftLabel.backgroundColor = [UIColor clearColor];
+    livesLeftLabel.textColor = [UIColor colorWithRed:1 green:0.8 blue:0 alpha:1]; /*#ffcc00*/
+    livesLeftLabel.font = [UIFont fontWithName:@"CourierNewPS-ItalicMT" size:18];
+    
+    [spaceView addSubview:survivalTimeLabel];
+    [spaceView addSubview:livesLeftLabel];
+   
     
     // Set the main view to be the controller's view.
     self.view = spaceView;
 }
 
+-(void) initTimeTracker{
+    
+    // start tracking time
+    timeTrackerTimer = [NSTimer scheduledTimerWithTimeInterval:1 
+                                                        target:self 
+                                                      selector:@selector(trackSurvivalTime) 
+                                                      userInfo:nil 
+                                                       repeats:YES];
+}
+
 -(void) initCollisionDetection{
 
     // start collision detection.
-    [NSTimer scheduledTimerWithTimeInterval:0.5 
-                                     target:self 
-                                   selector:@selector(detectAsteroidImpact) 
-                                   userInfo:nil 
-                                    repeats:YES];
+    collisionDetectionTimer = [NSTimer scheduledTimerWithTimeInterval:0.5 
+                                                               target:self 
+                                                             selector:@selector(detectAsteroidImpact) 
+                                                             userInfo:nil 
+                                                              repeats:YES];
 }
 
 // touch detection to tell the head where to go.
@@ -141,7 +206,17 @@
     [super viewDidLoad];
     
 }
-
+- (void) trackSurvivalTime{
+    survivalTimeTracker++;
+    
+    if(survivalTimeTracker % 10 == 0){
+        // Emphasize every time we cumulate 10 points
+        survivalTimeLabel.font = [UIFont fontWithName:@"CourierNewPS-BoldItalicMT" size:22];
+    }else{
+        survivalTimeLabel.font = [UIFont fontWithName:@"CourierNewPS-ItalicMT" size:18];
+    }
+    survivalTimeLabel.text = [[NSString alloc]initWithFormat:@" %u", survivalTimeTracker];
+}
 
 - (void) detectAsteroidImpact{
     
@@ -166,26 +241,57 @@
         
         
         if(CGRectIntersectsRect(asteroidRect, headRect)){
-            NSLog(@"IMPACT!");
-            
-            // Make head spin upon impact
-            // TODO: Refine this. Maybe just make the head scale bigger/smaller?
-            // Give a certain amount of lives. Decrement lives when hit by asteroid.
-            // Use gif animation for explosion when run out of lives.
-            
-            // Animation
-            [UIView animateWithDuration: [headSoundPlayer ouchAudioPlayer].duration
-                                  delay: 0.0 
-                                options: UIViewAnimationOptionCurveEaseInOut
-                             animations: ^{
-                                 // define animation
-                                 headViewController.view.transform = CGAffineTransformConcat(headViewController.view.transform, CGAffineTransformMakeRotation(180 * M_PI / 180));
-                             }
-                             completion: NULL
-             ];
+   
+      
+            // Only count impact if it's not during the after effects of a previous impact.
+            if(![headSoundPlayer.ouchAudioPlayer isPlaying]){
+                NSLog(@"Aseteroid impact!");
+                
+                // decrement number of lives left and display
+                if(lives > 0){
+                    lives --;
+                    livesLeftLabel.text = [[NSString alloc]initWithFormat:@"Lives: %u", lives];
+                
+    
+                    // Animation
+                    [UIView animateWithDuration: [headSoundPlayer ouchAudioPlayer].duration
+                                          delay: 0.0 
+                                        options: UIViewAnimationOptionCurveEaseInOut
+                                     animations: ^{
+                                         // define animation
+                                         headViewController.view.transform = CGAffineTransformConcat(headViewController.view.transform, CGAffineTransformMakeRotation(180 * M_PI / 180));
+                                     }
+                                     completion: NULL
+                     ];
+                    
+                
+                
+                }
+                
+                // dead
+                if(lives == 0){
+                    
+                    //Game over!
+                    // Animation
+                    [UIView animateWithDuration: [headSoundPlayer ouchAudioPlayer].duration
+                                          delay: 0.0 
+                                        options: UIViewAnimationOptionCurveEaseInOut
+                                     animations: ^{
+                                         // define animation
+                                         headViewController.view.transform = CGAffineTransformConcat(headViewController.view.transform, CGAffineTransformMakeRotation(180 * M_PI / 180));
+                                     }
+                                     completion: ^(BOOL finished){ 
+                                         [self endGame];
+                                     }];  
+                    
+                }     
+                 
+            }
             
             //play ouch sound
             [headSoundPlayer playOuchSound];
+            
+            
         }
     }
     

@@ -59,13 +59,13 @@
 
 
 -(void) playSpinSound{
-    NSLog(@"Play spin sound");
     if([spinAudioPlayer isPlaying] == false){
     
         // Stop any other sound
         [self stopAllPlayers];
         
         // Play sound
+         NSLog(@"Play spin sound");
         [spinAudioPlayer play];
     }
     
@@ -73,61 +73,61 @@
 }
 
 -(void) playMoveSound{
-    NSLog(@"Play move sound");
     if([moveAudioPlayer isPlaying] == false){
         
         // Stop any other sound
         [self stopAllPlayers];
         
         // Play sound
+        NSLog(@"Play move sound");
         [moveAudioPlayer play];
     }
 }
 
 -(void) playShrinkSound{
-    NSLog(@"Play shrink sound");
     if([shrinkAudioPlayer isPlaying] == false){
         
         // Stop any other sound
         [self stopAllPlayers];
         
         // Play sound
+        NSLog(@"Play shrink sound");
         [shrinkAudioPlayer play];
     }
 }
 
 -(void) playExpandSound{
-    NSLog(@"Play expand sound");
     if([expandAudioPlayer isPlaying] == false){
         
         // Stop any other sound
         [self stopAllPlayers];
         
         // Play sound
+        NSLog(@"Play expand sound");
         [expandAudioPlayer play];
     }
 }
 
 -(void) playRotateSound{
-    NSLog(@"Play device rotate sound");
     if([rotateAudioPlayer isPlaying] == false){
         
         // Stop any other sound
         [self stopAllPlayers];
         
         // Play sound
+        NSLog(@"Play device rotate sound");
         [rotateAudioPlayer play];
     }
 }
 
 -(void) playOuchSound{
-    NSLog(@"Play device ouch sound");
     if([ouchAudioPlayer isPlaying] == false){
         
         // Stop any other sound
         [self stopAllPlayers];
         
         // Play sound
+        NSLog(@"Play device ouch sound");
         [ouchAudioPlayer play];
     }
 }

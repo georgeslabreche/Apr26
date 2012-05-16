@@ -8,12 +8,17 @@
 
 #import "MainViewController.h"
 #import "MusicPlayer.h"
+#import "AppDelegate.h"
 
 @interface MainViewController ()
 
 @end
 
+
 @implementation MainViewController
+
+@synthesize menuViewController;
+@synthesize spaceViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -28,8 +33,11 @@
     self = [super initWithNibName:nil bundle:nil];
     if(self){
         
-        gameStarted = false;
         musicPlayer = [MusicPlayer sharedInstance];
+        
+        spaceViewController = [[SpaceViewController alloc]init];
+        menuViewController  = [[MenuViewController alloc]init];
+        
     }
     
     return self;
@@ -38,11 +46,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-    
-    // Our views
-    menuViewController  = [[MenuViewController alloc]init];
-    spaceViewController = [[SpaceViewController alloc]init];
+
     
     // Array of views
     views = [NSArray arrayWithObjects:
@@ -53,17 +57,22 @@
     
     [self.view addSubview: menuViewController.view];
     
+    [self initSingleTapGestureRecognizer];
+    
+    [musicPlayer playIntroMusic];
+    
+}
+
+-(void) initSingleTapGestureRecognizer{
     // add single tap gesture
     singleTapGestureRecognizer = [[UITapGestureRecognizer alloc]
                                   initWithTarget: self action: @selector(transitionToGameView:)
                                   ];
     singleTapGestureRecognizer.numberOfTapsRequired = 1;
     [self.view addGestureRecognizer: singleTapGestureRecognizer];
-    
-    [musicPlayer playIntroMusic];
-    
 }
 
+// Go to game playing view
 - (void) transitionToGameView: (UISwipeGestureRecognizer *) recognizer {
     [UIView transitionFromView: [views objectAtIndex: 0]
                         toView: [views objectAtIndex: 1]
@@ -72,19 +81,25 @@
                     completion: NULL
      ];
     
+    AppDelegate *delegate=[[UIApplication sharedApplication] delegate];
+    [delegate transitionToGameView];
+    
+    [spaceViewController startGame];
+    [musicPlayer playGameMusic];
+    
+    
     
     // Unregister the tap gesture, no longer required.
     if(singleTapGestureRecognizer != nil){
         [self.view removeGestureRecognizer:singleTapGestureRecognizer];
     }
     
-    [spaceViewController startGame];
-    [musicPlayer playGameMusic];
-    
 }
 
+
 // Start the game.
-//TODO: Once the game has started, this should pass the event to the controller
+//TODO: Once the game has started, this should pass the event to the space view controller
+// For now, just use single tap gesture recognizer
 /*
 - (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
 {

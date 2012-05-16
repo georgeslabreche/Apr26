@@ -7,7 +7,6 @@
 //
 
 #import "AppDelegate.h"
-#import "MainViewController.h"
 
 @implementation AppDelegate
 
@@ -20,12 +19,35 @@
     self.window = [[UIWindow alloc] initWithFrame:mainScreenFrame];
     // Override point for customization after application launch.
     
-    MainViewController *mainViewController = [[MainViewController alloc]init];
+    mainViewController = [[MainViewController alloc]init];
     
     self.window.rootViewController = mainViewController;
        
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void) transitionToGameView {
+    [UIView transitionFromView: mainViewController.menuViewController.view
+                        toView: mainViewController.spaceViewController.view
+                      duration: 1
+                       options: UIViewAnimationOptionTransitionCrossDissolve
+                    completion: NULL
+     ];
+    
+}
+
+- (void) transitionToIntroView {
+    
+    [mainViewController initSingleTapGestureRecognizer];
+    
+    [UIView transitionFromView: mainViewController.spaceViewController.view
+                        toView: mainViewController.menuViewController.view
+                      duration: 1
+                       options: UIViewAnimationOptionTransitionCrossDissolve
+                    completion: NULL
+     ];
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

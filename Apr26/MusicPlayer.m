@@ -38,6 +38,11 @@
 
 // http://www.last.fm/music/dezecrator/_/Intro-electro
 -(void) playIntroMusic{
+    // Stop game music
+    if([gameMusicPlayer isPlaying]){
+        [gameMusicPlayer stop];
+    }
+    
     // Play sound
     [gameIntroMusicPlayer play];
     
@@ -47,8 +52,10 @@
 -(void) playGameMusic{
 
     // Stop game intro music
-    [gameIntroMusicPlayer stop];
-        
+    if([gameIntroMusicPlayer isPlaying]){
+        [gameIntroMusicPlayer stop];
+    }
+    
     // Play sound
     [gameMusicPlayer play];
 }

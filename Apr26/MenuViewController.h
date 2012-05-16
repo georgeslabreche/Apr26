@@ -7,7 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "MusicPlayer.h"
 
-@interface MenuViewController : UIViewController
+@interface MenuViewController : UIViewController{
+    UITapGestureRecognizer *singleTapGestureRecognizer;
+    MusicPlayer *musicPlayer;
+}
 
 @end
